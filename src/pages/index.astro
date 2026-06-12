@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { siteContent, siteLinks } from "../data/siteContent";
 
-const { hero, works, about, finalCta, social } = siteContent;
+const { hero, works, about, voice, finalCta, social } = siteContent;
 ---
 
 <BaseLayout>
@@ -64,6 +64,38 @@ const { hero, works, about, finalCta, social } = siteContent;
         {about.body.slice(0, 3).map((line) => <p>{line}</p>)}
       </div>
       <a class="button button--ghost" href="/about/">撮影への考え方を見る</a>
+    </div>
+  </section>
+
+  <section class="section voice-section" aria-labelledby="top-voice-title">
+    <div class="section-head" data-animate="fade-up">
+      <p class="section-kicker">Voice</p>
+      <h2 id="top-voice-title">{voice.title}</h2>
+      <p class="lead">{voice.body}</p>
+    </div>
+    <div class="voice-grid">
+      {
+        voice.items.map((item) => (
+          <article class="voice-card" data-animate="fade-up">
+            <div class="voice-card__meta">
+              <span class="voice-card__stars" aria-label="5つ星評価">{item.rating}</span>
+              <span class="voice-card__genre">{item.genre}</span>
+            </div>
+            <h3>{item.title}</h3>
+            <p>{item.quote}</p>
+          </article>
+        ))
+      }
+    </div>
+    <div class="voice-section__footer" data-animate="fade-up">
+      <p class="voice-section__note">{voice.note}</p>
+      <div class="voice-section__cta">
+        <p>
+          <strong>{voice.cta.title}</strong>
+          <span>{voice.cta.body}</span>
+        </p>
+        <a class="button button--ghost" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>
+      </div>
     </div>
   </section>
 
