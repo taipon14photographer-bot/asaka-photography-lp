@@ -1,6 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { options, otherPlanCategories, siteContent, siteLinks, weddingComparison } from "../data/siteContent";
+import { options, otherPlanCategories, siteLinks, weddingComparison } from "../data/siteContent";
+
+type WeddingRow = (typeof weddingComparison.rows)[number];
+type WeddingPlanKey = Exclude<keyof WeddingRow, "label">;
+
+const getWeddingRowValue = (row: WeddingRow, key: string) => row[key as WeddingPlanKey];
 ---
 
 <BaseLayout title="Price | ASAKA Photography" description="ASAKA Photographyの撮影料金。Wedding、Maternity、Family、Newborn、Optionsを比較して確認できます。">
@@ -8,7 +13,7 @@ import { options, otherPlanCategories, siteContent, siteLinks, weddingComparison
     <div class="page-hero__copy">
       <p class="eyebrow">Price</p>
       <h1 id="price-title">料金は、写真の枚数ではなく、残したい時間で選ぶ。</h1>
-      <p class="lead">どのプランが合うかは、撮影時間や納品枚数だけでは決まりません。価格だけではなく、何が違うのかを先に確認できるように整理しました。</p>
+      <p class="lead">どのプランが合うかは、撮影時間や納品枚数だけでは決まりません。価格だけでなく、何を残したいかで選べるように整理しました。</p>
     </div>
   </section>
 
@@ -57,6 +62,25 @@ import { options, otherPlanCategories, siteContent, siteLinks, weddingComparison
         </tbody>
       </table>
     </div>
+
+    <div class="compare-card-grid" data-animate="fade-up" aria-label="Weddingプラン比較">
+      {
+        weddingComparison.plans.map((plan) => (
+          <article class:list={["compare-card", plan.recommended && "is-recommended"]}>
+            {plan.recommended && <span class="badge">おすすめ</span>}
+            <h3>{plan.name}</h3>
+            <dl>
+              {weddingComparison.rows.map((row) => (
+                <>
+                  <dt>{row.label}</dt>
+                  <dd>{getWeddingRowValue(row, plan.key)}</dd>
+                </>
+              ))}
+            </dl>
+          </article>
+        ))
+      }
+    </div>
   </section>
 
   <section class="section" aria-labelledby="other-price-title">
@@ -94,7 +118,7 @@ import { options, otherPlanCategories, siteContent, siteLinks, weddingComparison
   <section class="section section--paper" aria-labelledby="options-title">
     <div class="section-head" data-animate="fade-up">
       <p class="section-kicker">Options</p>
-      <h2 id="options-title">必要なものだけ、追加できます。</h2>
+      <h2 id="options-title">必要なものだけ、あとから追加できます。</h2>
     </div>
     <div class="option-grid">
       {
@@ -112,8 +136,8 @@ import { options, otherPlanCategories, siteContent, siteLinks, weddingComparison
   <section class="cta-section" aria-labelledby="price-contact-title">
     <div data-animate="fade-up">
       <p class="eyebrow">Contact</p>
-      <h2 id="price-contact-title">プランに迷う場合は、LINEで一緒に整理できます。</h2>
-      <p>{siteContent.finalCta.note}</p>
+      <h2 id="price-contact-title">迷ったら、LINEで一緒に整理しましょう。</h2>
+      <p>撮影場所や日程、どのプランが合うかまで、決まっていなくても大丈夫です。残したい時間に合わせて、無理のない形をご提案します。</p>
     </div>
     <div class="cta-section__actions" data-animate="fade-up">
       <a class="button button--light" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>

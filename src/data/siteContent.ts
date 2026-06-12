@@ -255,21 +255,21 @@ export const siteContent = {
 export const weddingComparison = {
   title: "Wedding Plan",
   lead:
-    "ウェディングは価格だけでなく、残したい時間の長さで選べるようにしています。迷ったら、まずはEssentialを基準に考えてください。",
+    "ウェディングは、どんな一日として残したいかで選びやすいように整理しています。迷ったら、まずはEssentialを基準に考えてください。",
   plans: [
     {
       key: "casual",
       name: "Casual",
       weekday: "34,800円",
       weekend: "39,800円",
-      summary: "1つの場所で、記念としてきちんと残したい方へ。",
+      summary: "1か所で、記念としてきちんと残したい方へ。",
     },
     {
       key: "essential",
       name: "Essential",
       weekday: "49,800円",
       weekend: "59,800円",
-      summary: "撮影時間と内容のバランスがよい、おすすめプラン。",
+      summary: "移動や雰囲気の違いも残したい方へ。迷ったらこのプランを基準に。",
       recommended: true,
     },
     {
@@ -277,7 +277,7 @@ export const weddingComparison = {
       name: "Signature",
       weekday: "79,800円",
       weekend: "89,800円",
-      summary: "時間を気にせず、一日そのものを残したい方へ。",
+      summary: "時間を気にせず、一日そのものを物語として残したい方へ。",
     },
   ],
   rows: [
@@ -285,9 +285,7 @@ export const weddingComparison = {
     { label: "ロケーション数", casual: "1ロケーション", essential: "2ロケーション", signature: "2〜3ロケーション" },
     { label: "納品", casual: "セレクト・編集後データ", essential: "セレクト・編集後データ", signature: "セレクト・編集後全データ納品" },
     { label: "衣装チェンジ", casual: "なし", essential: "相談可", signature: "対応" },
-    { label: "夕景・マジックアワー", casual: "なし", essential: "時間内で相談可", signature: "対応" },
-    { label: "ロケーション提案", casual: "相談可", essential: "あり", signature: "あり" },
-    { label: "事前打ち合わせ", casual: "LINE相談", essential: "あり", signature: "あり" },
+    { label: "事前相談", casual: "LINEで整理", essential: "LINE＋必要時オンライン", signature: "LINE＋オンライン相談可" },
     { label: "A3プリント", casual: "オプション", essential: "オプション", signature: "1枚込み" },
   ],
 };
@@ -341,12 +339,6 @@ export const otherPlanCategories = [
         weekend: "44,800円",
         details: ["撮影時間2時間程度", "納品50枚以上", "赤ちゃんと家族の時間を中心に撮影"],
         recommended: true,
-      },
-      {
-        name: "Art New Born",
-        weekday: "準備中",
-        weekend: "準備中",
-        details: ["詳細は準備中", "ご希望がある場合はLINEでご相談ください"],
       },
     ],
   },
