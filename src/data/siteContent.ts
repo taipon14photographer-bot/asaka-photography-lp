@@ -1,5 +1,3 @@
-import heroDesktop from "../assets/photos/hero/susuki-sunset-desktop.webp";
-import heroMobile from "../assets/photos/hero/susuki-sunset-mobile.webp";
 import aboutImage from "../assets/photos/about/asaka-daiki-camera-forest.jpeg";
 import worksWedding from "../assets/photos/works/wedding-lifecycle-start.jpg";
 import worksMaternity from "../assets/photos/works/maternity-before-birth.jpg";
@@ -30,8 +28,8 @@ export const siteContent = {
   },
   hero: {
     image: {
-      desktop: heroDesktop,
-      mobile: heroMobile,
+      desktop: "/images/hero/susuki-sunset-desktop.jpg",
+      mobile: "/images/hero/susuki-sunset-mobile.jpg",
       alt: "夕日のすすき野で寄り添う新郎新婦の後ろ姿",
     },
     title: "何年後かに見返したとき、今日の幸せまで思い出せるように。",

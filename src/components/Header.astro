@@ -3,13 +3,22 @@ import { navItems, siteLinks } from "../data/siteContent";
 
 const currentPath = Astro.url.pathname;
 const isActive = (href: string) => href === "/" ? currentPath === "/" : currentPath.startsWith(href);
+const mobileNavItems = [
+  { label: "Works", href: "/works/" },
+  { label: "About", href: "/about/" },
+  { label: "Price", href: "/price/" },
+  { label: "FAQ", href: "/faq/" },
+];
 ---
 
 <header class="site-header" aria-label="サイトヘッダー">
   <a class="site-header__brand" href="/" aria-label="ASAKA Photography トップへ">
     <img src="/images/brand/asaka-photography-logo-horizontal.png" alt="ASAKA Photography" width="180" height="52" />
   </a>
-  <nav class="site-header__nav" aria-label="主要ページ">
+  <nav class="site-header__nav site-header__nav--mobile" aria-label="主要ページ（スマホ）">
+    {mobileNavItems.map((item) => <a class:list={[isActive(item.href) && "is-active"]} href={item.href}>{item.label}</a>)}
+  </nav>
+  <nav class="site-header__nav site-header__nav--desktop" aria-label="主要ページ">
     {navItems.map((item) => <a class:list={[isActive(item.href) && "is-active"]} href={item.href}>{item.label}</a>)}
   </nav>
   <a class="site-header__line" href={siteLinks.line} target="_blank" rel="noreferrer">LINE相談</a>

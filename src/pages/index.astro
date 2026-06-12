@@ -10,8 +10,8 @@ const { hero, works, about, finalCta, social } = siteContent;
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero__media">
       <picture>
-        <source media="(max-width: 719px)" srcset={hero.image.mobile.src} />
-        <Image
+        <source media="(max-width: 719px)" srcset={hero.image.mobile} type="image/jpeg" />
+        <img
           src={hero.image.desktop}
           alt={hero.image.alt}
           width={1800}
