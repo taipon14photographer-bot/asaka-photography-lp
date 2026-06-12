@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteLinks } from "../data/siteContent";
+---
+
+<BaseLayout title="ページが見つかりません | ASAKA Photography" description="ASAKA Photographyのページが見つかりませんでした。撮影のご相談はLINEから受け付けています。" noindex>
+  <section class="section section--not-found" aria-labelledby="not-found-title">
+    <div class="section-head" data-animate="fade-up">
+      <p class="section-kicker">404</p>
+      <h1 id="not-found-title">ページが見つかりませんでした。</h1>
+      <p class="lead">撮影のご相談や作品の確認は、下のリンクから進めます。</p>
+      <div class="inline-actions">
+        <a class="button" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>
+        <a class="button button--ghost" href="/works/">写真を見る</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

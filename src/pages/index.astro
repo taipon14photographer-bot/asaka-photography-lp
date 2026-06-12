@@ -1,0 +1,109 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteContent, siteLinks } from "../data/siteContent";
+
+const { hero, works, about, finalCta, social } = siteContent;
+---
+
+<BaseLayout>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero__media">
+      <picture>
+        <source media="(max-width: 719px)" srcset={hero.image.mobile.src} />
+        <Image
+          src={hero.image.desktop}
+          alt={hero.image.alt}
+          width={1800}
+          height={1200}
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </picture>
+    </div>
+    <div class="hero__content">
+      <h1 id="hero-title">{hero.title}</h1>
+      <div class="hero__actions">
+        <a class="button" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="top-works-title">
+    <div class="section-head section-head--wide" data-animate="fade-up">
+      <p class="section-kicker">Works</p>
+      <h2 id="top-works-title">{works.title}</h2>
+      <p class="lead">{works.body}</p>
+    </div>
+    <div class="page-card-grid">
+      {
+        works.preview.map((item) => (
+          <a class="page-card" href={`/works/#${item.slug}`} data-animate="image-reveal">
+            <Image src={item.image} alt={item.alt} width={720} height={540} loading="lazy" decoding="async" />
+            <div class="page-card__body">
+              <p class="section-kicker">{item.label}</p>
+              <h3>{item.title}</h3>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-labelledby="top-about-title">
+    <div class="about-grid">
+      <div class="about-grid__image" data-animate="image-reveal">
+        <Image src={about.image.src} alt={about.image.alt} width={900} height={600} loading="lazy" decoding="async" />
+      </div>
+      <div data-animate="fade-up">
+        <p class="section-kicker">About</p>
+        <h2 id="top-about-title">{about.title}</h2>
+        <div class="section-copy">
+          {about.body.slice(0, 3).map((line) => <p>{line}</p>)}
+        </div>
+        <a class="button button--ghost" href="/about/">人柄と撮影の考え方を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--beige" aria-labelledby="top-price-title">
+    <div class="section-head" data-animate="fade-up">
+      <p class="section-kicker">Price</p>
+      <h2 id="top-price-title">料金とプランの違いを、先に確認できます。</h2>
+      <p class="lead">Weddingは比較表で、Maternity / Newborn / Familyも料金ページにまとめています。</p>
+      <a class="button" href="/price/">料金を見る</a>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-labelledby="top-social-title">
+    <div class="section-head" data-animate="fade-up">
+      <p class="section-kicker">SNS</p>
+      <h2 id="top-social-title">{social.title}</h2>
+      <p class="lead">{social.body}</p>
+    </div>
+    <div class="social-grid">
+      {
+        social.links.map((link) => (
+          <a class="social-card" href={link.href} target="_blank" rel="noreferrer" data-primary={link.primary ? "true" : undefined} data-animate="fade-up">
+            <span>{link.label}</span>
+            <strong>{link.text}</strong>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="cta-section" aria-labelledby="top-contact-title">
+    <div data-animate="fade-up">
+      <p class="eyebrow">Contact</p>
+      <h2 id="top-contact-title">{finalCta.title}</h2>
+      <p>{finalCta.body}</p>
+      <p>{finalCta.note}</p>
+    </div>
+    <div class="cta-section__actions" data-animate="fade-up">
+      <a class="button button--light" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>
+      <a class="button button--ghost" href="/flow/">相談から納品までの流れを見る</a>
+    </div>
+  </section>
+</BaseLayout>

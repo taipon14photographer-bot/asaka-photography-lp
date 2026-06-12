@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteContent, siteLinks } from "../data/siteContent";
+
+const { about, philosophy } = siteContent;
+---
+
+<BaseLayout title="About | ASAKA Photography" description="ASAKA Photographyの朝香大樹が撮影で大切にしていること。撮る前に、人を見るという姿勢について。">
+  <section class="page-hero page-hero--split" aria-labelledby="about-title">
+    <div class="page-hero__copy">
+      <p class="eyebrow">About</p>
+      <h1 id="about-title">{about.title}</h1>
+      <div class="section-copy">
+        {about.body.map((line) => <p>{line}</p>)}
+      </div>
+      <p class="lead">{about.note}</p>
+    </div>
+    <div class="page-hero__image" data-animate="image-reveal">
+      <Image src={about.image.src} alt={about.image.alt} width={900} height={600} loading="eager" decoding="async" />
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-labelledby="philosophy-title">
+    <div class="section-head" data-animate="fade-up">
+      <p class="section-kicker">Philosophy</p>
+      <h2 id="philosophy-title">{philosophy.title}</h2>
+      <div class="section-copy">
+        {philosophy.body.map((line) => <p>{line}</p>)}
+      </div>
+      <div class="quiet-statement">
+        {philosophy.statement.map((line) => <span>{line}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" aria-labelledby="about-contact-title">
+    <div data-animate="fade-up">
+      <p class="eyebrow">Next</p>
+      <h2 id="about-contact-title">写真を見てから、相談しても大丈夫です。</h2>
+      <p>撮影の雰囲気を見たい方はWorksへ。具体的に日程や場所を相談したい方はLINEへお進みください。</p>
+    </div>
+    <div class="cta-section__actions" data-animate="fade-up">
+      <a class="button button--light" href="/works/">Worksを見る</a>
+      <a class="button button--ghost" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,123 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { options, otherPlanCategories, siteContent, siteLinks, weddingComparison } from "../data/siteContent";
+---
+
+<BaseLayout title="Price | ASAKA Photography" description="ASAKA Photographyの撮影料金。Wedding、Maternity、Family、Newborn、Optionsを比較して確認できます。">
+  <section class="page-hero" aria-labelledby="price-title">
+    <div class="page-hero__copy">
+      <p class="eyebrow">Price</p>
+      <h1 id="price-title">料金は、写真の枚数ではなく、残したい時間で選ぶ。</h1>
+      <p class="lead">どのプランが合うかは、撮影時間や納品枚数だけでは決まりません。価格だけではなく、何が違うのかを先に確認できるように整理しました。</p>
+    </div>
+  </section>
+
+  <section class="section section--beige" aria-labelledby="wedding-price-title">
+    <div class="section-head section-head--wide" data-animate="fade-up">
+      <p class="section-kicker">Wedding</p>
+      <h2 id="wedding-price-title">{weddingComparison.title}</h2>
+      <p class="lead">{weddingComparison.lead}</p>
+    </div>
+
+    <div class="price-summary-grid">
+      {
+        weddingComparison.plans.map((plan) => (
+          <article class:list={["price-plan", plan.recommended && "is-recommended"]} data-animate="fade-up">
+            {plan.recommended && <span class="badge">おすすめ</span>}
+            <h3>{plan.name}</h3>
+            <div class="price-pair">
+              <p><span>平日</span> {plan.weekday}</p>
+              <p><span>土日祝</span> {plan.weekend}</p>
+            </div>
+            <p>{plan.summary}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <div class="compare-wrap" data-animate="fade-up">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>比較項目</th>
+            {weddingComparison.plans.map((plan) => <th>{plan.name}{plan.recommended ? "（おすすめ）" : ""}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {
+            weddingComparison.rows.map((row) => (
+              <tr>
+                <th>{row.label}</th>
+                <td>{row.casual}</td>
+                <td>{row.essential}</td>
+                <td>{row.signature}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="other-price-title">
+    <div class="section-head section-head--wide" data-animate="fade-up">
+      <p class="section-kicker">Maternity / Family / Newborn</p>
+      <h2 id="other-price-title">人生の節目ごとに、撮影内容を選べます。</h2>
+      <p class="lead">マタニティ、家族写真、ニューボーンも、撮影時間と残したい内容に合わせて選べます。</p>
+    </div>
+
+    {
+      otherPlanCategories.map((category) => (
+        <section class="other-category" aria-labelledby={`${category.title}-price-title`} data-animate="fade-up">
+          <h3 id={`${category.title}-price-title`}>{category.title}</h3>
+          <p>{category.description}</p>
+          <div class="other-plan-grid">
+            {category.plans.map((plan) => (
+              <article class:list={["other-plan", plan.recommended && "is-recommended"]}>
+                {plan.recommended && <span class="badge">おすすめ</span>}
+                <h4>{plan.name}</h4>
+                <div class="price-pair">
+                  <p><span>平日</span> {plan.weekday}</p>
+                  <p><span>土日祝</span> {plan.weekend}</p>
+                </div>
+                <ul>
+                  {plan.details.map((detail) => <li>{detail}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </section>
+
+  <section class="section section--paper" aria-labelledby="options-title">
+    <div class="section-head" data-animate="fade-up">
+      <p class="section-kicker">Options</p>
+      <h2 id="options-title">必要なものだけ、追加できます。</h2>
+    </div>
+    <div class="option-grid">
+      {
+        options.map((option) => (
+          <article class="option-card" data-animate="fade-up">
+            <h3>{option.title}</h3>
+            <p class="price-pair">{option.text}</p>
+            {option.note && <p>{option.note}</p>}
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="cta-section" aria-labelledby="price-contact-title">
+    <div data-animate="fade-up">
+      <p class="eyebrow">Contact</p>
+      <h2 id="price-contact-title">プランに迷う場合は、LINEで一緒に整理できます。</h2>
+      <p>{siteContent.finalCta.note}</p>
+    </div>
+    <div class="cta-section__actions" data-animate="fade-up">
+      <a class="button button--light" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>
+      <a class="button button--ghost" href="/flow/">撮影までの流れを見る</a>
+    </div>
+  </section>
+</BaseLayout>

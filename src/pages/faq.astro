@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteContent, siteLinks } from "../data/siteContent";
+
+const { faq } = siteContent;
+---
+
+<BaseLayout title="FAQ | ASAKA Photography" description="ASAKA Photographyの撮影前によくある質問。写真が苦手、子ども撮影、場所相談、掲載可否など。">
+  <section class="page-hero" aria-labelledby="faq-title">
+    <div class="page-hero__copy">
+      <p class="eyebrow">FAQ</p>
+      <h1 id="faq-title">{faq.title}</h1>
+      <p class="lead">不安があるままでも大丈夫です。よくある質問を確認して、まだ分からないことはLINEで聞いてください。</p>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-label="よくある質問">
+    <div class="faq-list">
+      {
+        faq.items.map((item) => (
+          <details data-animate="fade-up">
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="cta-section" aria-labelledby="faq-contact-title">
+    <div data-animate="fade-up">
+      <p class="eyebrow">Contact</p>
+      <h2 id="faq-contact-title">ここにない不安も、LINEで聞いてください。</h2>
+      <p>相談したからといって、すぐに予約を決める必要はありません。</p>
+    </div>
+    <div class="cta-section__actions" data-animate="fade-up">
+      <a class="button button--light" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>
+      <a class="button button--ghost" href="/works/">写真を見る</a>
+    </div>
+  </section>
+</BaseLayout>

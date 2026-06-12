@@ -1,0 +1,223 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteContent, siteLinks } from "../data/siteContent";
+import omiyamairiExtra from "../assets/photos/works/omiyamairi-first-prayer.jpg";
+
+const weddingModules = import.meta.glob("../assets/photos/works-candidates/01_wedding/*.{jpg,JPG,jpeg,png}", {
+  eager: true,
+  import: "default",
+});
+const maternityModules = import.meta.glob("../assets/photos/works-candidates/02_maternity/*.{jpg,JPG,jpeg,png}", {
+  eager: true,
+  import: "default",
+});
+const newbornModules = import.meta.glob("../assets/photos/works-candidates/03_newborn/*.{jpg,JPG,jpeg,png}", {
+  eager: true,
+  import: "default",
+});
+const omiyamairiModules = import.meta.glob("../assets/photos/works-candidates/04_omiyamairi/*.{jpg,JPG,jpeg,png}", {
+  eager: true,
+  import: "default",
+});
+const shichigosanModules = import.meta.glob(
+  [
+    "../assets/photos/works-candidates/05_shichigosan/*.{jpg,JPG,jpeg,png}",
+    "!../assets/photos/works-candidates/05_shichigosan/2024.04.21-159.jpg",
+  ],
+  {
+    eager: true,
+    import: "default",
+  },
+);
+const familyModules = import.meta.glob("../assets/photos/works-candidates/06_family/*.{jpg,JPG,jpeg,png}", {
+  eager: true,
+  import: "default",
+});
+
+const pickImages = (modules: Record<string, unknown>, names: string[], limit: number): ImageMetadata[] => {
+  const entries = Object.entries(modules).sort(([a], [b]) => a.localeCompare(b, "ja")) as Array<[string, ImageMetadata]>;
+  const selected = names
+    .map((name) => entries.find(([path]) => path.endsWith(name))?.[1])
+    .filter((image): image is ImageMetadata => Boolean(image));
+  const rest = entries.map(([, image]) => image).filter((image) => !selected.includes(image));
+  return [...selected, ...rest].slice(0, limit);
+};
+
+const gallerySections = [
+  {
+    id: "wedding",
+    title: "Wedding Gallery",
+    lead: "ふたりで始まる、家族の時間。光、距離感、照れた表情まで。",
+    alt: "ウェディング前撮りの写真",
+    images: pickImages(
+      weddingModules,
+      [
+        "2023.11.07 窪井さまwedding-91.jpg",
+        "2021-10-20 Kazuki & Emiri-159.jpg",
+        "2024.10.05 森さま Pre Wedding-200.jpg",
+        "2021-10-15 Manabu & Mito-180.jpg",
+        "2023.11.07 窪井さまwedding-105.jpg",
+        "2023.11.07 窪井さまwedding-52.jpg",
+        "2024.10.05 森さま Pre Wedding-153.jpg",
+        "2023.11.20 高野様prewedding-98.jpg",
+      ],
+      12,
+    ),
+  },
+  {
+    id: "maternity",
+    title: "Maternity Gallery",
+    lead: "まだ会えない子と、もう始まっている家族の時間。",
+    alt: "マタニティフォトの写真",
+    images: pickImages(
+      maternityModules,
+      [
+        "2022.12.20 Arisa-165.jpg",
+        "2023.06.18 内海さま-103.jpg",
+        "2023.06.18 内海さま-15.jpg",
+        "2023.06.18 内海さま-177.jpg",
+        "2023.06.18 内海さま-70.jpg",
+        "2023.12.03 nakano family-175.jpg",
+        "2023.12.03 nakano family-223.jpg",
+        "2023.12.03 nakano family-330.jpg",
+        "a-rii-210.jpg",
+      ],
+      9,
+    ),
+  },
+  {
+    id: "newborn",
+    title: "Newborn Gallery",
+    lead: "家族になったばかりの、まなざしと手の温度。",
+    alt: "ニューボーンフォトの写真",
+    images: pickImages(
+      newbornModules,
+      [
+        "2024.02.09　稟々-66.jpg",
+        "2024.02.09　稟々-160.jpg",
+        "2024.02.09　稟々-314.jpg",
+        "a-rii-213.jpg",
+        "2023.09.24 Ao Birth-319.jpg",
+        "2024.02.09　稟々-55.jpg",
+        "2024.02.09　稟々-36.jpg",
+        "2024.02.09　稟々-80.jpg",
+        "2023.09.24 Ao Birth-291.jpg",
+      ],
+      9,
+    ),
+  },
+  {
+    id: "omiyamairi",
+    title: "お宮参り Gallery",
+    lead: "はじめて家族で祈る日。抱っこする人、見守る人、その日の空気まで。",
+    alt: "お宮参りの写真",
+    images: [
+      ...pickImages(
+        omiyamairiModules,
+        [
+          "2021-09-19-永梛お宮参り-148.jpg",
+          "2024.03.16 宇竜くんお宮参り-173.jpg",
+          "2024.03.16 宇竜くんお宮参り-145.jpg",
+          "2024.03.16 宇竜くんお宮参り-147.jpg",
+          "2024.03.16 宇竜くんお宮参り-181.jpg",
+        ],
+        5,
+      ),
+      omiyamairiExtra,
+    ],
+  },
+  {
+    id: "753",
+    title: "七五三 Gallery",
+    lead: "少し大きくなった今を、家族みんなで見つめる日。",
+    alt: "七五三の写真",
+    images: pickImages(
+      shichigosanModules,
+      [
+        "yuma-sena 753-203.jpg",
+        "2024.04.21-362.jpg",
+        "yuma-sena 753-194.jpg",
+        "yuma-sena 753-181.jpg",
+        "2024.04.21-394.jpg",
+        "2024.04.21-269.jpg",
+      ],
+      6,
+    ),
+  },
+  {
+    id: "family",
+    title: "Family Gallery",
+    lead: "特別な日だけではなく、何気ない日にも残したい幸せがあります。",
+    alt: "家族写真",
+    images: pickImages(
+      familyModules,
+      [
+        "2023.11.09 day camp-75.jpg",
+        "2023.11.09 day camp-139.jpg",
+        "2021-12-31 Ena half birthday-224.jpg",
+        "2021-09-23-高木family-76.jpg",
+        "2023.12.10 曽根様-127.jpg",
+        "2024.04.14-458.JPG",
+        "2024.04.14-613.JPG",
+        "2024.02.13　Kawazu-57.jpg",
+        "2021-09-23-高木family-155.jpg",
+      ],
+      9,
+    ),
+  },
+];
+
+const { works } = siteContent;
+---
+
+<BaseLayout title="Works | ASAKA Photography" description="Wedding、Maternity、Newborn、お宮参り、七五三、Familyを人生導線で見られる作例ギャラリーページ。">
+  <section class="page-hero" aria-labelledby="works-title">
+    <div class="page-hero__copy">
+      <p class="eyebrow">Works</p>
+      <h1 id="works-title">{works.title}</h1>
+      <p class="lead">{works.body}</p>
+    </div>
+  </section>
+
+  <nav class="gallery-nav" aria-label="ギャラリー内リンク" data-animate="fade-in">
+    {gallerySections.map((section) => <a href={`#${section.id}`}>{section.title.replace(" Gallery", "")}</a>)}
+  </nav>
+
+  {
+    gallerySections.map((section, sectionIndex) => (
+      <section class="gallery-section" id={section.id} aria-labelledby={`${section.id}-title`}>
+        <div class="section-head section-head--wide" data-animate="fade-up">
+          <p class="section-kicker">{String(sectionIndex + 1).padStart(2, "0")}</p>
+          <h2 id={`${section.id}-title`}>{section.title}</h2>
+          <p class="lead">{section.lead}</p>
+        </div>
+        <div class="masonry">
+          {section.images.map((image, imageIndex) => (
+            <figure data-animate="image-reveal">
+              <Image
+                src={image}
+                alt={`${section.alt} ${imageIndex + 1}`}
+                loading={sectionIndex === 0 && imageIndex < 2 ? "eager" : "lazy"}
+                decoding="async"
+              />
+            </figure>
+          ))}
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="cta-section" aria-labelledby="works-contact-title">
+    <div data-animate="fade-up">
+      <p class="eyebrow">Contact</p>
+      <h2 id="works-contact-title">気になる写真の雰囲気を、LINEで教えてください。</h2>
+      <p>「この写真みたいに撮りたい」「場所はまだ未定」でも大丈夫です。写真を見ながら相談できます。</p>
+    </div>
+    <div class="cta-section__actions" data-animate="fade-up">
+      <a class="button button--light" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>
+      <a class="button button--ghost" href="/price/">料金を見る</a>
+    </div>
+  </section>
+</BaseLayout>

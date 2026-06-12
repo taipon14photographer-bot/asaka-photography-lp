@@ -1,0 +1,357 @@
+import heroDesktop from "../assets/photos/hero/susuki-sunset-desktop.webp";
+import heroMobile from "../assets/photos/hero/susuki-sunset-mobile.webp";
+import aboutImage from "../assets/photos/about/asaka-daiki-camera-forest.jpeg";
+import worksWedding from "../assets/photos/works/wedding-lifecycle-start.jpg";
+import worksMaternity from "../assets/photos/works/maternity-before-birth.jpg";
+import worksNewborn from "../assets/photos/works/newborn-family-gaze.jpg";
+import worksOmiyamairi from "../assets/photos/works/omiyamairi-first-prayer.jpg";
+import worksShichigosan from "../assets/photos/works/shichigosan-siblings-growth.jpg";
+import worksFamily from "../assets/photos/works/family-day-camp.jpg";
+
+export const siteLinks = {
+  line: "https://lin.ee/pD6G7lq",
+  instagram: "https://www.instagram.com/taiki_izu.photo/",
+  note: "https://note.com/asaka_photo/n/nc8f7413e9012",
+};
+
+export const navItems = [
+  { label: "About", href: "/about/" },
+  { label: "Works", href: "/works/" },
+  { label: "Price", href: "/price/" },
+  { label: "Flow", href: "/flow/" },
+  { label: "FAQ", href: "/faq/" },
+];
+
+export const siteContent = {
+  meta: {
+    title: "ASAKA Photography | 人生の中にある幸せな瞬間を、綺麗に残す写真",
+    description:
+      "静岡・伊豆を中心に、前撮り、マタニティ、ニューボーン、お宮参り、七五三、家族写真を撮影するASAKA PhotographyのLPです。",
+  },
+  hero: {
+    image: {
+      desktop: heroDesktop,
+      mobile: heroMobile,
+      alt: "夕日のすすき野で寄り添う新郎新婦の後ろ姿",
+    },
+    title: "何年後かに見返したとき、今日の幸せまで思い出せるように。",
+    ctaNote: "日程や場所がまだ決まっていなくても大丈夫です。",
+  },
+  philosophy: {
+    title: "写真に残したいのは、出来事だけではありません。",
+    body: [
+      "写真は、その日の出来事を記録するためだけのものではないと思っています。",
+      "一緒に笑ったこと。少し緊張していたこと。子どもが泣いてしまったこと。夕日を待ちながら、何気なく話したこと。",
+      "何年後かに写真を見返したとき、写っている姿だけでなく、その時間まで思い出せるものを残したい。",
+      "だからASAKA Photographyでは、写真の綺麗さだけではなく、撮影している時間そのものを大切にしています。",
+    ],
+    statement: ["綺麗に整えること。", "その人らしい時間を待つこと。", "その両方を大切にしています。"],
+  },
+  about: {
+    image: {
+      src: aboutImage,
+      alt: "森の中で笑顔でカメラを構える朝香大樹",
+    },
+    title: "撮る前に、人を見る。",
+    body: [
+      "はじめまして。ASAKA Photographyの朝香大樹です。",
+      "撮影で最初に見ているのは、ポーズや表情だけではありません。どんなふうに笑うのか。どんな距離感で話すのか。緊張すると、手や肩にどんな力が入るのか。お子さんが誰のそばにいると安心するのか。",
+      "なぜそこを見るのかというと、写真に残したいのは形だけではなく、その人たちの関係性だと思っているからです。",
+      "きれいに立つことや、上手に笑うことだけが写真ではありません。少し照れていること。ふたりで顔を見合わせること。泣いている子を家族みんなで待つこと。そういう時間の中に、その家族らしさが出ると思っています。",
+      "だから必要なときだけ少し整え、急かさず、決めつけず、お二人やご家族の時間がほどけていくのを待ちながら撮影しています。",
+      "Weddingでふたりの時間を残し、Maternityでまだ会えない子を待つ時間を残し、Newborn、お宮参り、七五三、Familyへ。人生の節目ごとに、同じ写真家として長く伴走できたらうれしいです。",
+      "人生の中にある幸せな瞬間を、綺麗に残せる人になりたい。ASAKA Photographyは、その思いを中心に撮影しています。",
+    ],
+    note:
+      "写真が苦手でも、最初から上手に写ろうとしなくて大丈夫です。お二人やご家族のペースを見ながら、必要なところはこちらで声をかけて整えていきます。",
+  },
+  works: {
+    title: "人生の節目を、写真でたどれるように。",
+    body:
+      "WeddingからFamilyまで、ジャンルを分けて見せるのではなく、人生の流れとして写真を並べます。まずは写真を見ながら、自分たちが残したい時間を想像してください。",
+    preview: [
+      {
+        label: "Wedding",
+        slug: "wedding",
+        title: "ふたりで始まる、家族の時間",
+        image: worksWedding,
+        alt: "すすき野で見つめ合いながら寄り添う新郎新婦",
+      },
+      {
+        label: "Maternity",
+        slug: "maternity",
+        title: "まだ会えない子と過ごす時間",
+        image: worksMaternity,
+        alt: "お腹の赤ちゃんに家族で寄り添うマタニティの時間",
+      },
+      {
+        label: "Newborn",
+        slug: "newborn",
+        title: "家族になったばかりのまなざし",
+        image: worksNewborn,
+        alt: "生まれたばかりの赤ちゃんを両親が見つめる家族の時間",
+      },
+      {
+        label: "お宮参り",
+        slug: "omiyamairi",
+        title: "はじめて、家族で祈る日",
+        image: worksOmiyamairi,
+        alt: "神社で赤ちゃんを連れて歩くお宮参りの家族",
+      },
+      {
+        label: "七五三",
+        slug: "753",
+        title: "少し大きくなった今を、家族で見つめる日",
+        image: worksShichigosan,
+        alt: "七五三の着物姿できょうだいが笑い合う時間",
+      },
+      {
+        label: "Family",
+        slug: "family",
+        title: "何気ない日にも、残したい幸せがある",
+        image: worksFamily,
+        alt: "キャンプ場で子どもを囲んで笑い合う家族",
+      },
+    ],
+  },
+  flow: {
+    title: "相談から納品まで、迷わないように。",
+    body:
+      "はじめての撮影でも、何を決めればいいか分かるように、LINE相談から納品までの流れをシンプルにしています。",
+    steps: [
+      {
+        label: "LINEで相談",
+        text: "撮影したいジャンルや時期、場所のイメージをお聞かせください。まだ具体的に決まっていなくても大丈夫です。",
+      },
+      {
+        label: "ヒアリング",
+        text: "希望日、場所、残したい雰囲気、ご家族構成などを整理します。",
+      },
+      {
+        label: "プラン決定",
+        text: "LINEでやり取りしながら撮影内容とプランを決めます。必要に応じて事前相談も可能です。",
+      },
+      {
+        label: "撮影",
+        text: "無理に作り込まず、その日らしい空気や自然な表情を大切に撮影します。",
+      },
+      {
+        label: "編集",
+        text: "その日の空気が残るように、セレクトと編集を丁寧に進めます。",
+      },
+      {
+        label: "納品",
+        text: "一枚ずつ丁寧に整えて、データで納品します。プリントやお急ぎ納品もご相談できます。",
+      },
+      {
+        label: "掲載許可確認",
+        text: "写真掲載は範囲を確認し、許可をいただいた写真のみ使用します。掲載不可でも問題ありません。",
+      },
+    ],
+  },
+  faq: {
+    title: "問い合わせ前の小さな不安に。",
+    items: [
+      {
+        question: "写真を撮られるのが苦手でも大丈夫ですか？",
+        answer:
+          "大丈夫です。最初から上手に写ろうとしなくて構いません。会話しながら少しずつ慣れていけるように進め、必要なところだけこちらで立ち位置や手元を整えます。",
+      },
+      {
+        question: "写真が苦手なパートナーがいても大丈夫ですか？",
+        answer:
+          "大丈夫です。無理にテンションを上げたり、たくさんポーズを求めたりはしません。苦手な方のペースも見ながら、ふたりで過ごしている時間が自然に残るように撮影します。",
+      },
+      {
+        question: "子どもが泣いたり動き回ったりしても大丈夫ですか？",
+        answer:
+          "大丈夫です。泣いてしまうことや動き回ることも、その年齢らしい大切な姿です。無理に止めすぎず、休憩を挟みながら、ご家族の空気ごと残していきます。",
+      },
+      {
+        question: "撮影場所が決まっていなくても相談できますか？",
+        answer:
+          "もちろん大丈夫です。残したい雰囲気、移動のしやすさ、季節や光の時間帯も含めて一緒に考えます。場所が未定のままLINEで相談していただいて大丈夫です。",
+      },
+      {
+        question: "雨の日はどうなりますか？",
+        answer:
+          "天候に不安がある場合は、事前に相談しながら判断します。日程変更や場所の調整が必要な場合も、できるだけ無理のない形でご案内します。",
+      },
+      {
+        question: "家族や祖父母も参加できますか？",
+        answer:
+          "参加できます。お宮参りや七五三、家族写真では、ご祖父母との写真も大切に残せます。人数が増える場合は、事前にLINEで教えてください。",
+      },
+      {
+        question: "衣装や小物の相談はできますか？",
+        answer:
+          "できます。衣装の色味、季節感、小物を持ち込むかどうかなど、写真全体の雰囲気に関わる部分も一緒に考えられます。迷っている状態で相談していただいて大丈夫です。",
+      },
+      {
+        question: "どのプランを選べばいいか分かりません。",
+        answer:
+          "迷ったままで大丈夫です。撮影したい時期、場所、人数、残したい雰囲気をLINEで聞かせてください。必要な内容を整理しながら、合いそうなプランを一緒に考えます。",
+      },
+      {
+        question: "納品枚数はどのくらいですか？",
+        answer:
+          "撮影内容やプランによって変わります。ASAKA Photographyでは枚数だけを目的にせず、その日の記憶として残したい写真をセレクトし、編集して納品します。",
+      },
+      {
+        question: "納品方法はどうなりますか？",
+        answer:
+          "基本はオンラインでデータ納品します。スマホやパソコンから確認でき、ご家族とも共有しやすい形でお渡しします。プリントをご希望の場合もご相談ください。",
+      },
+      {
+        question: "納品までどのくらいかかりますか？",
+        answer:
+          "撮影内容や時期によって変わります。お急ぎ納品や特急納品をご希望の場合は、予約前にLINEでご相談ください。必要な日がある場合は先に教えていただけると安心です。",
+      },
+      {
+        question: "写真掲載は必須ですか？",
+        answer:
+          "必須ではありません。InstagramやLPへの掲載は、掲載範囲を確認し、許可をいただいた写真のみ使用します。掲載不可の場合も問題ありません。",
+      },
+      {
+        question: "予約前にLINE相談だけでもできますか？",
+        answer:
+          "もちろん大丈夫です。相談したからといって、すぐに予約を決める必要はありません。日程や場所が決まっていなくても、まずは気になっていることから聞いてください。",
+      },
+    ],
+  },
+  finalCta: {
+    title: "写真を見て、気になったところから相談してください。",
+    body:
+      "撮影場所、日程、プラン、子ども撮影の不安まで。まだ何も決まっていなくても大丈夫です。",
+    note: "予約するかどうかは、相談してから決めても大丈夫です。",
+  },
+  social: {
+    title: "比較検討中の方へ",
+    body:
+      "Instagramとnoteは補助導線です。撮影を具体的に相談したい場合は、LINEからご連絡ください。",
+    links: [
+      {
+        label: "Instagram",
+        href: siteLinks.instagram,
+        text: "写真の雰囲気を見る",
+      },
+      {
+        label: "note",
+        href: siteLinks.note,
+        text: "撮影への考え方を読む",
+      },
+      {
+        label: "LINE",
+        href: siteLinks.line,
+        text: "撮影を相談する",
+        primary: true,
+      },
+    ],
+  },
+};
+
+export const weddingComparison = {
+  title: "Wedding Plan",
+  lead:
+    "ウェディングは価格だけでなく、残したい時間の長さで選べるようにしています。迷ったら、まずはEssentialを基準に考えてください。",
+  plans: [
+    {
+      key: "casual",
+      name: "Casual",
+      weekday: "34,800円",
+      weekend: "39,800円",
+      summary: "1つの場所で、記念としてきちんと残したい方へ。",
+    },
+    {
+      key: "essential",
+      name: "Essential",
+      weekday: "49,800円",
+      weekend: "59,800円",
+      summary: "撮影時間と内容のバランスがよい、おすすめプラン。",
+      recommended: true,
+    },
+    {
+      key: "signature",
+      name: "Signature",
+      weekday: "79,800円",
+      weekend: "89,800円",
+      summary: "時間を気にせず、一日そのものを残したい方へ。",
+    },
+  ],
+  rows: [
+    { label: "撮影時間", casual: "約1.5時間", essential: "約2.5時間", signature: "目安4〜5時間" },
+    { label: "ロケーション数", casual: "1ロケーション", essential: "2ロケーション", signature: "2〜3ロケーション" },
+    { label: "納品", casual: "セレクト・編集後データ", essential: "セレクト・編集後データ", signature: "セレクト・編集後全データ納品" },
+    { label: "衣装チェンジ", casual: "なし", essential: "相談可", signature: "対応" },
+    { label: "夕景・マジックアワー", casual: "なし", essential: "時間内で相談可", signature: "対応" },
+    { label: "ロケーション提案", casual: "相談可", essential: "あり", signature: "あり" },
+    { label: "事前打ち合わせ", casual: "LINE相談", essential: "あり", signature: "あり" },
+    { label: "A3プリント", casual: "オプション", essential: "オプション", signature: "1枚込み" },
+  ],
+};
+
+export const otherPlanCategories = [
+  {
+    title: "Maternity",
+    description: "生まれる前から家族だった時間を、静かに残します。",
+    plans: [
+      {
+        name: "Casual",
+        weekday: "29,800円",
+        weekend: "34,800円",
+        details: ["撮影時間1時間", "納品30枚以上", "1ロケーション"],
+      },
+      {
+        name: "Essential",
+        weekday: "39,800円",
+        weekend: "44,800円",
+        details: ["撮影時間1.5時間", "納品50枚以上", "家族での撮影にも対応"],
+        recommended: true,
+      },
+    ],
+  },
+  {
+    title: "Family",
+    description: "うまく笑わなくても、じっとしていなくてもいい。その日らしい家族の空気を残します。",
+    plans: [
+      {
+        name: "Casual",
+        weekday: "29,800円",
+        weekend: "34,800円",
+        details: ["撮影時間1.5時間", "納品50枚以上", "家族の記念撮影向け"],
+      },
+      {
+        name: "Essential",
+        weekday: "39,800円",
+        weekend: "44,800円",
+        details: ["撮影時間2.5時間", "納品75枚以上", "遊びや移動を含めた撮影向け"],
+        recommended: true,
+      },
+    ],
+  },
+  {
+    title: "Newborn",
+    description: "赤ちゃんのペースに合わせて、生まれたての小さな時間を残します。",
+    plans: [
+      {
+        name: "Standard",
+        weekday: "39,800円",
+        weekend: "44,800円",
+        details: ["撮影時間2時間程度", "納品50枚以上", "赤ちゃんと家族の時間を中心に撮影"],
+        recommended: true,
+      },
+      {
+        name: "Art New Born",
+        weekday: "準備中",
+        weekend: "準備中",
+        details: ["詳細は準備中", "ご希望がある場合はLINEでご相談ください"],
+      },
+    ],
+  },
+];
+
+export const options = [
+  { title: "お急ぎ納品", text: "5,500円 / 1週間以内" },
+  { title: "特急納品", text: "11,000円 / 3日以内" },
+  { title: "A3プリント", text: "3,300円 / 枚", note: "写真を、飾れる一枚として。" },
+];

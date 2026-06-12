@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteContent, siteLinks } from "../data/siteContent";
+
+const { flow } = siteContent;
+---
+
+<BaseLayout title="Flow | ASAKA Photography" description="ASAKA Photographyの撮影相談から納品までの流れ。LINE相談、ヒアリング、撮影、編集、納品まで。">
+  <section class="page-hero" aria-labelledby="flow-title">
+    <div class="page-hero__copy">
+      <p class="eyebrow">Flow</p>
+      <h1 id="flow-title">{flow.title}</h1>
+      <p class="lead">{flow.body}</p>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-label="撮影までの流れ">
+    <ol class="flow-list">
+      {
+        flow.steps.map((step, index) => (
+          <li data-animate="fade-up">
+            <span class="flow-list__number">{String(index + 1).padStart(2, "0")}</span>
+            <div>
+              <h2>{step.label}</h2>
+              <p>{step.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="cta-section" aria-labelledby="flow-contact-title">
+    <div data-animate="fade-up">
+      <p class="eyebrow">Contact</p>
+      <h2 id="flow-contact-title">最初は、相談だけで大丈夫です。</h2>
+      <p>撮影時期や場所が決まっていなくても、LINEで一緒に整理できます。</p>
+    </div>
+    <div class="cta-section__actions" data-animate="fade-up">
+      <a class="button button--light" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>
+      <a class="button button--ghost" href="/faq/">よくある不安を見る</a>
+    </div>
+  </section>
+</BaseLayout>
