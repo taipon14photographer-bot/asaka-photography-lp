@@ -92,7 +92,6 @@ const gallerySections = [
       "02-kazuki-emiri-159.jpg",
       "05-kuboi-wedding-105.jpg",
       "15-takano-prewedding-153.jpg",
-      "13-kuboi-wedding-144.jpg",
     ]),
   },
   {
@@ -106,7 +105,6 @@ const gallerySections = [
       "06-nakano-175.jpg",
       "02-utsumi-103.jpg",
       "04-utsumi-177.jpg",
-      "03-utsumi-15.jpg",
     ]),
   },
   {
@@ -156,12 +154,11 @@ const gallerySections = [
     lead: "特別な日だけではなく、何気ない日にも残したい幸せがあります。",
     alt: "家族写真",
     images: pickImages(familyModules, [
-      "01-day-camp-75.jpg",
-      "03-ena-224.jpg",
       "02-day-camp-139.jpg",
-      "04-takagi-76.jpg",
-      "05-sone-127.jpg",
-      "06-20240414-458.jpg",
+      "03-ena-224.jpg",
+      "01-day-camp-75.jpg",
+      "08-20240414-613.JPG",
+      "07-20240414-426.JPG",
     ]),
   },
 ];
@@ -178,10 +175,16 @@ const { works } = siteContent;
     </div>
   </section>
 
-  <nav class="gallery-chip-nav" aria-label="人生の流れで見るギャラリー">
-    <p>人生の流れを、写真でたどる。</p>
-    <div class="gallery-chip-nav__scroller">
-      {gallerySections.map((section) => <a href={`#${section.id}`}>{section.title.replace(" Gallery", "")}</a>)}
+  <nav class="gallery-card-nav" aria-label="人生の流れで見るギャラリー">
+    <div class="gallery-card-nav__grid">
+      {
+        gallerySections.map((section, sectionIndex) => (
+          <a href={`#${section.id}`}>
+            <span>{String(sectionIndex + 1).padStart(2, "0")}</span>
+            <strong>{section.title.replace(" Gallery", "")}</strong>
+          </a>
+        ))
+      }
     </div>
   </nav>
 
@@ -196,18 +199,35 @@ const { works } = siteContent;
         <div class="gallery-grid">
           {section.images.map((image, imageIndex) => (
             <figure class:list={["gallery-frame", imageIndex === 0 && "gallery-frame--feature"]}>
-              <Image
-                src={image}
-                alt={`${section.alt} ${imageIndex + 1}`}
-                loading={sectionIndex === 0 && imageIndex < 2 ? "eager" : "lazy"}
-                decoding="async"
-              />
+              <button
+                class="gallery-lightbox-trigger"
+                type="button"
+                data-lightbox-trigger
+                aria-label={`${section.alt} ${imageIndex + 1}を拡大表示`}
+              >
+                <Image
+                  src={image}
+                  alt={`${section.alt} ${imageIndex + 1}`}
+                  loading={sectionIndex === 0 && imageIndex < 2 ? "eager" : "lazy"}
+                  decoding="async"
+                />
+              </button>
             </figure>
           ))}
         </div>
       </section>
     ))
   }
+
+  <div class="gallery-lightbox" data-lightbox hidden aria-hidden="true">
+    <button class="gallery-lightbox__close" type="button" data-lightbox-close aria-label="拡大表示を閉じる">閉じる</button>
+    <button class="gallery-lightbox__nav gallery-lightbox__nav--prev" type="button" data-lightbox-prev aria-label="前の写真へ">‹</button>
+    <figure class="gallery-lightbox__figure">
+      <img data-lightbox-image src="" alt="" />
+      <figcaption data-lightbox-caption></figcaption>
+    </figure>
+    <button class="gallery-lightbox__nav gallery-lightbox__nav--next" type="button" data-lightbox-next aria-label="次の写真へ">›</button>
+  </div>
 
   <section class="cta-section" aria-labelledby="works-contact-title">
     <div data-animate="fade-up">
@@ -220,4 +240,97 @@ const { works } = siteContent;
       <a class="button button--ghost" href="/price/">料金を見る</a>
     </div>
   </section>
+
+  <script is:inline>
+    (() => {
+      const lightbox = document.querySelector("[data-lightbox]");
+      const lightboxImage = document.querySelector("[data-lightbox-image]");
+      const caption = document.querySelector("[data-lightbox-caption]");
+      const closeButton = document.querySelector("[data-lightbox-close]");
+      const prevButton = document.querySelector("[data-lightbox-prev]");
+      const nextButton = document.querySelector("[data-lightbox-next]");
+      const triggers = Array.from(document.querySelectorAll("[data-lightbox-trigger]"));
+
+      if (!lightbox || !lightboxImage || !caption || !closeButton || !prevButton || !nextButton || triggers.length === 0) {
+        return;
+      }
+
+      let currentIndex = 0;
+      let pointerStartX = 0;
+
+      const showImage = (index) => {
+        currentIndex = (index + triggers.length) % triggers.length;
+        const sourceImage = triggers[currentIndex].querySelector("img");
+
+        if (!sourceImage) {
+          return;
+        }
+
+        lightboxImage.src = sourceImage.currentSrc || sourceImage.src;
+        lightboxImage.alt = sourceImage.alt;
+        caption.textContent = sourceImage.alt;
+      };
+
+      const openLightbox = (index) => {
+        showImage(index);
+        lightbox.hidden = false;
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.classList.add("is-lightbox-open");
+        closeButton.focus();
+      };
+
+      const closeLightbox = () => {
+        lightbox.hidden = true;
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("is-lightbox-open");
+        triggers[currentIndex]?.focus();
+      };
+
+      triggers.forEach((trigger, index) => {
+        trigger.addEventListener("click", () => openLightbox(index));
+      });
+
+      closeButton.addEventListener("click", closeLightbox);
+      prevButton.addEventListener("click", () => showImage(currentIndex - 1));
+      nextButton.addEventListener("click", () => showImage(currentIndex + 1));
+
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      lightbox.addEventListener("pointerdown", (event) => {
+        pointerStartX = event.clientX;
+      });
+
+      lightbox.addEventListener("pointerup", (event) => {
+        const swipeDistance = event.clientX - pointerStartX;
+
+        if (Math.abs(swipeDistance) < 48) {
+          return;
+        }
+
+        showImage(currentIndex + (swipeDistance < 0 ? 1 : -1));
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (lightbox.hidden) {
+          return;
+        }
+
+        if (event.key === "Escape") {
+          closeLightbox();
+        }
+
+        if (event.key === "ArrowLeft") {
+          showImage(currentIndex - 1);
+        }
+
+        if (event.key === "ArrowRight") {
+          showImage(currentIndex + 1);
+        }
+      });
+    })();
+  </script>
 </BaseLayout>
