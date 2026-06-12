@@ -20,7 +20,9 @@ const { faq } = siteContent;
         faq.items.map((item) => (
           <details data-animate="fade-up">
             <summary>{item.question}</summary>
-            <p>{item.answer}</p>
+            <div class="faq-answer">
+              {Array.isArray(item.answer) ? item.answer.map((line) => <p>{line}</p>) : <p>{item.answer}</p>}
+            </div>
           </details>
         ))
       }
@@ -30,8 +32,9 @@ const { faq } = siteContent;
   <section class="cta-section" aria-labelledby="faq-contact-title">
     <div data-animate="fade-up">
       <p class="eyebrow">Contact</p>
-      <h2 id="faq-contact-title">ここにない不安も、LINEで聞いてください。</h2>
+      <h2 id="faq-contact-title">ここにない不安も、LINEで一緒に整理しましょう。</h2>
       <p>相談したからといって、すぐに予約を決める必要はありません。</p>
+      <p>撮影時期や場所が決まっていなくても大丈夫です。残したい時間に合わせて、一緒に考えていきましょう。</p>
     </div>
     <div class="cta-section__actions" data-animate="fade-up">
       <a class="button button--light" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>
