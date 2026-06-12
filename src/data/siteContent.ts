@@ -283,7 +283,7 @@ export const weddingComparison = {
   rows: [
     { label: "撮影時間", casual: "約1.5時間", essential: "約2.5時間", signature: "目安4〜5時間" },
     { label: "ロケーション数", casual: "1ロケーション", essential: "2ロケーション", signature: "2〜3ロケーション" },
-    { label: "納品", casual: "セレクト・編集後データ", essential: "セレクト・編集後データ", signature: "セレクト・編集後全データ納品" },
+    { label: "納品", casual: "50枚以上（セレクト・編集後データ）", essential: "100枚以上（セレクト・編集後データ）", signature: "150枚以上＋全データ納品" },
     { label: "衣装チェンジ", casual: "なし", essential: "相談可", signature: "対応" },
     { label: "事前相談", casual: "LINEで整理", essential: "LINE＋必要時オンライン", signature: "LINE＋オンライン相談可" },
     { label: "A3プリント", casual: "オプション", essential: "オプション", signature: "1枚込み" },
