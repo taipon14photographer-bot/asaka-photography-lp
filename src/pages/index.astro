@@ -23,7 +23,9 @@ const { hero, works, about, finalCta, social } = siteContent;
       </picture>
     </div>
     <div class="hero__content">
-      <h1 id="hero-title">{hero.title}</h1>
+      <h1 id="hero-title" aria-label={hero.title}>
+        {hero.titleLines.map((line) => <span>{line}</span>)}
+      </h1>
       <div class="hero__actions">
         <a class="button" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>
       </div>
@@ -36,11 +38,11 @@ const { hero, works, about, finalCta, social } = siteContent;
       <h2 id="top-works-title">{works.title}</h2>
       <p class="lead">{works.body}</p>
     </div>
-    <div class="page-card-grid">
+    <div class="page-card-grid works-digest">
       {
         works.preview.map((item) => (
-          <a class="page-card" href={`/works/#${item.slug}`} data-animate="image-reveal">
-            <Image src={item.image} alt={item.alt} width={720} height={540} loading="lazy" decoding="async" />
+          <a class="page-card works-digest__item" href={`/works/#${item.slug}`} data-animate="image-reveal">
+            <Image src={item.image} alt={item.alt} width={640} height={640} loading="lazy" decoding="async" style={`object-position: ${item.focus};`} />
             <div class="page-card__body">
               <p class="section-kicker">{item.label}</p>
               <h3>{item.title}</h3>
@@ -53,10 +55,7 @@ const { hero, works, about, finalCta, social } = siteContent;
   </section>
 
   <section class="section section--paper" aria-labelledby="top-about-title">
-    <div class="about-grid">
-      <div class="about-grid__image" data-animate="image-reveal">
-        <Image src={about.image.src} alt={about.image.alt} width={900} height={600} loading="lazy" decoding="async" />
-      </div>
+    <div class="about-grid about-grid--compact">
       <div data-animate="fade-up">
         <p class="section-kicker">About</p>
         <h2 id="top-about-title">{about.title}</h2>
@@ -64,6 +63,9 @@ const { hero, works, about, finalCta, social } = siteContent;
           {about.body.slice(0, 3).map((line) => <p>{line}</p>)}
         </div>
         <a class="button button--ghost" href="/about/">人柄と撮影の考え方を見る</a>
+      </div>
+      <div class="about-grid__image" data-animate="image-reveal">
+        <Image src={about.image.src} alt={about.image.alt} width={480} height={360} loading="lazy" decoding="async" />
       </div>
     </div>
   </section>

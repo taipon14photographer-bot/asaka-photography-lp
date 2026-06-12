@@ -33,6 +33,7 @@ export const siteContent = {
       alt: "夕日のすすき野で寄り添う新郎新婦の後ろ姿",
     },
     title: "何年後かに見返したとき、今日の幸せまで思い出せるように。",
+    titleLines: ["何年後かに見返したとき、", "今日の幸せまで", "思い出せるように。"],
     ctaNote: "日程や場所がまだ決まっていなくても大丈夫です。",
   },
   philosophy: {
@@ -73,6 +74,7 @@ export const siteContent = {
         slug: "wedding",
         title: "ふたりで始まる、家族の時間",
         image: worksWedding,
+        focus: "58% 48%",
         alt: "すすき野で見つめ合いながら寄り添う新郎新婦",
       },
       {
@@ -80,6 +82,7 @@ export const siteContent = {
         slug: "maternity",
         title: "まだ会えない子と過ごす時間",
         image: worksMaternity,
+        focus: "50% 48%",
         alt: "お腹の赤ちゃんに家族で寄り添うマタニティの時間",
       },
       {
@@ -87,6 +90,7 @@ export const siteContent = {
         slug: "newborn",
         title: "家族になったばかりのまなざし",
         image: worksNewborn,
+        focus: "50% 50%",
         alt: "生まれたばかりの赤ちゃんを両親が見つめる家族の時間",
       },
       {
@@ -94,6 +98,7 @@ export const siteContent = {
         slug: "omiyamairi",
         title: "はじめて、家族で祈る日",
         image: worksOmiyamairi,
+        focus: "50% 45%",
         alt: "神社で赤ちゃんを連れて歩くお宮参りの家族",
       },
       {
@@ -101,6 +106,7 @@ export const siteContent = {
         slug: "753",
         title: "少し大きくなった今を、家族で見つめる日",
         image: worksShichigosan,
+        focus: "50% 44%",
         alt: "七五三の着物姿できょうだいが笑い合う時間",
       },
       {
@@ -108,6 +114,7 @@ export const siteContent = {
         slug: "family",
         title: "何気ない日にも、残したい幸せがある",
         image: worksFamily,
+        focus: "50% 50%",
         alt: "キャンプ場で子どもを囲んで笑い合う家族",
       },
     ],
