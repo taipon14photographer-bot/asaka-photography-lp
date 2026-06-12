@@ -119,7 +119,7 @@ export const siteContent = {
   works: {
     title: "人生の節目を、写真でたどる。",
     body:
-      "WeddingからFamilyまで、人生の流れに沿って写真を並べています。まずは、残したい時間に近い写真からご覧ください。",
+      "WeddingからFamilyまで、人生の流れに沿って写真を並べています。気になる撮影ジャンルから、写真をご覧ください。",
     preview: [
       {
         label: "Wedding",
@@ -185,7 +185,7 @@ export const siteContent = {
       },
       {
         label: "ヒアリング",
-        text: "希望日、場所、残したい雰囲気、ご家族構成などを一緒に整理します。",
+        text: "希望日、場所、撮りたい雰囲気をお伺いします。",
       },
       {
         label: "プラン決定",
@@ -212,7 +212,7 @@ export const siteContent = {
       {
         label: "アンケート",
         text: [
-          "撮影後、簡単なアンケートをお願いしています。",
+          "撮影後、簡単なアンケートをお願いします。",
           "写真掲載についても、掲載可否や範囲を確認します。",
         ],
       },
@@ -259,7 +259,7 @@ export const siteContent = {
       {
         question: "どのプランを選べばいいか分かりません。",
         answer:
-          "迷ったままで大丈夫です。撮影したい時期、場所、人数、残したい雰囲気をLINEで聞かせてください。必要な内容を整理しながら、合いそうなプランを一緒に考えます。",
+          "迷ったままで大丈夫です。撮影したい時期、場所、人数、残したい雰囲気をLINEで聞かせてください。必要な内容を確認しながら、合いそうなプランを一緒に考えます。",
       },
       {
         question: "納品枚数はどのくらいですか？",
@@ -283,7 +283,7 @@ export const siteContent = {
       {
         question: "写真掲載は必須ですか？",
         answer:
-          "必須ではありません。InstagramやLPへの掲載は、掲載範囲を確認し、許可をいただいた写真のみ使用します。掲載不可の場合も問題ありません。",
+          "必須ではありません。InstagramやLPへの掲載は、事前に掲載可能な範囲を確認し、許可をいただいたお写真のみ使用します。掲載不可の場合も問題ありません。",
       },
       {
         question: "予約前にLINE相談だけでもできますか？",
@@ -296,7 +296,7 @@ export const siteContent = {
     title: "大切に残したい時間を、聞かせてください。",
     body:
       "撮影場所や日程、どんな写真を残したいか。まだ何も決まっていなくても大丈夫です。",
-    note: "言葉になっていないイメージからでも、ゆっくり一緒に整理します。",
+    note: "言葉になっていないイメージからでも、ゆっくり一緒に考えます。",
   },
   social: {
     title: "比較検討中の方へ",
@@ -325,7 +325,7 @@ export const siteContent = {
 export const weddingComparison = {
   title: "Wedding Plan",
   lead:
-    "ウェディングは、どんな一日として残したいかで選びやすいように整理しています。迷ったら、まずはEssentialを基準に考えてください。",
+    "ウェディングは、どんな一日として残したいかで選びやすいようにまとめています。迷ったら、まずはEssentialを基準に考えてください。",
   plans: [
     {
       key: "casual",
@@ -355,7 +355,7 @@ export const weddingComparison = {
     { label: "ロケーション数", casual: "1ロケーション", essential: "2ロケーション", signature: "2〜3ロケーション" },
     { label: "納品", casual: "50枚以上（セレクト・編集後データ）", essential: "100枚以上（セレクト・編集後データ）", signature: "150枚以上＋全データ納品" },
     { label: "衣装チェンジ", casual: "なし", essential: "相談可", signature: "対応" },
-    { label: "事前相談", casual: "LINEで整理", essential: "LINE＋必要時オンライン", signature: "LINE＋オンライン相談可" },
+    { label: "事前相談", casual: "LINE相談", essential: "LINE＋必要時オンライン", signature: "LINE＋オンライン相談可" },
     { label: "A3プリント", casual: "オプション", essential: "オプション", signature: "1枚込み" },
   ],
 };

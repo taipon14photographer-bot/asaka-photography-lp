@@ -53,7 +53,7 @@ const { hero, works, about, voice, finalCta, social } = siteContent;
         ))
       }
     </div>
-    <p class="section-link" data-animate="fade-up"><a href="/works/">人生の流れで写真を見る</a></p>
+    <p class="section-link" data-animate="fade-up"><a href="/works/">撮影事例を見る</a></p>
   </section>
 
   <section class="section section--paper" aria-labelledby="top-about-title">
@@ -102,7 +102,9 @@ const { hero, works, about, voice, finalCta, social } = siteContent;
   <section class="section section--beige" aria-labelledby="top-price-title">
     <div class="section-head" data-animate="fade-up">
       <p class="section-kicker">Price</p>
-      <h2 id="top-price-title">プランと料金を、先に確認できます。</h2>
+      <h2 id="top-price-title" class="balanced-heading mobile-line-break">
+        <span>プランと料金を、</span><span>先に確認できます。</span>
+      </h2>
       <p class="lead">Weddingは比較表で、Maternity / Newborn / Familyも料金ページにまとめています。</p>
       <a class="button" href="/price/">プランと料金を確認する</a>
     </div>
@@ -156,7 +158,9 @@ const { hero, works, about, voice, finalCta, social } = siteContent;
   <section class="cta-section" aria-labelledby="top-contact-title">
     <div data-animate="fade-up">
       <p class="eyebrow">Contact</p>
-      <h2 id="top-contact-title">{finalCta.title}</h2>
+      <h2 id="top-contact-title" class="balanced-heading mobile-line-break">
+        <span>大切に残したい時間を、</span><span>聞かせてください。</span>
+      </h2>
       <p>{finalCta.body}</p>
       <p>{finalCta.note}</p>
     </div>

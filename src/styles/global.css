@@ -345,6 +345,10 @@ h3 {
   display: inline-block;
 }
 
+.mobile-line-break span {
+  display: inline;
+}
+
 h4 {
   margin: 0 0 0.5rem;
   font-size: 1.08rem;
@@ -1271,6 +1275,12 @@ summary {
     opacity: 1;
     transform: none;
     clip-path: none;
+  }
+}
+
+@media (max-width: 719px) {
+  .mobile-line-break span {
+    display: block;
   }
 }
 
