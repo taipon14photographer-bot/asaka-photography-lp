@@ -22,7 +22,9 @@ const { flow } = siteContent;
             <span class="flow-list__number">{String(index + 1).padStart(2, "0")}</span>
             <div>
               <h2>{step.label}</h2>
-              <p>{step.text}</p>
+              <div class="flow-list__body">
+                {Array.isArray(step.text) ? step.text.map((line) => <p>{line}</p>) : <p>{step.text}</p>}
+              </div>
             </div>
           </li>
         ))
