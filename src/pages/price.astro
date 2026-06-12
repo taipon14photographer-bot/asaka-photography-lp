@@ -1,11 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { options, otherPlanCategories, siteLinks, weddingComparison } from "../data/siteContent";
-
-type WeddingRow = (typeof weddingComparison.rows)[number];
-type WeddingPlanKey = Exclude<keyof WeddingRow, "label">;
-
-const getWeddingRowValue = (row: WeddingRow, key: string) => row[key as WeddingPlanKey];
 ---
 
 <BaseLayout title="Price | ASAKA Photography" description="ASAKA Photographyの撮影料金。Wedding、Maternity、Family、Newborn、Optionsを比較して確認できます。">
@@ -61,25 +56,6 @@ const getWeddingRowValue = (row: WeddingRow, key: string) => row[key as WeddingP
           }
         </tbody>
       </table>
-    </div>
-
-    <div class="compare-card-grid" data-animate="fade-up" aria-label="Weddingプラン比較">
-      {
-        weddingComparison.plans.map((plan) => (
-          <article class:list={["compare-card", plan.recommended && "is-recommended"]}>
-            {plan.recommended && <span class="badge">おすすめ</span>}
-            <h3>{plan.name}</h3>
-            <dl>
-              {weddingComparison.rows.map((row) => (
-                <>
-                  <dt>{row.label}</dt>
-                  <dd>{getWeddingRowValue(row, plan.key)}</dd>
-                </>
-              ))}
-            </dl>
-          </article>
-        ))
-      }
     </div>
   </section>
 

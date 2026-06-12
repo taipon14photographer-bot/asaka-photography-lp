@@ -312,7 +312,7 @@ export const otherPlanCategories = [
   },
   {
     title: "Family",
-    description: "うまく笑わなくても、じっとしていなくてもいい。その日らしい家族の空気を残します。",
+    description: "特別な日だけでなく、何気ない日にも残したい幸せがあります。",
     plans: [
       {
         name: "Casual",
