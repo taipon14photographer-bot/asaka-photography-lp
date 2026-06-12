@@ -21,13 +21,15 @@ const { hero, works, about, finalCta, social } = siteContent;
           fetchpriority="high"
         />
       </picture>
+      <div class="hero__overlay">
+        <h1 id="hero-title" aria-label={hero.title}>
+          {hero.titleLines.map((line) => <span>{line}</span>)}
+        </h1>
+      </div>
     </div>
     <div class="hero__content">
-      <h1 id="hero-title" aria-label={hero.title}>
-        {hero.titleLines.map((line) => <span>{line}</span>)}
-      </h1>
       <div class="hero__actions">
-        <a class="button" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>
+        <a class="button" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで撮影相談する</a>
       </div>
     </div>
   </section>
@@ -51,31 +53,26 @@ const { hero, works, about, finalCta, social } = siteContent;
         ))
       }
     </div>
-    <p class="section-link" data-animate="fade-up"><a href="/works/">Worksをもっと見る</a></p>
+    <p class="section-link" data-animate="fade-up"><a href="/works/">人生の流れで写真を見る</a></p>
   </section>
 
   <section class="section section--paper" aria-labelledby="top-about-title">
-    <div class="about-grid about-grid--compact">
-      <div data-animate="fade-up">
-        <p class="section-kicker">About</p>
-        <h2 id="top-about-title">{about.title}</h2>
-        <div class="section-copy">
-          {about.body.slice(0, 3).map((line) => <p>{line}</p>)}
-        </div>
-        <a class="button button--ghost" href="/about/">人柄と撮影の考え方を見る</a>
+    <div class="about-brief" data-animate="fade-up">
+      <p class="section-kicker">About</p>
+      <h2 id="top-about-title">{about.title}</h2>
+      <div class="section-copy">
+        {about.body.slice(0, 3).map((line) => <p>{line}</p>)}
       </div>
-      <div class="about-grid__image" data-animate="image-reveal">
-        <Image src={about.image.src} alt={about.image.alt} width={480} height={360} loading="lazy" decoding="async" />
-      </div>
+      <a class="button button--ghost" href="/about/">撮影への考え方を見る</a>
     </div>
   </section>
 
   <section class="section section--beige" aria-labelledby="top-price-title">
     <div class="section-head" data-animate="fade-up">
       <p class="section-kicker">Price</p>
-      <h2 id="top-price-title">料金とプランの違いを、先に確認できます。</h2>
+      <h2 id="top-price-title">プランと料金を、先に確認できます。</h2>
       <p class="lead">Weddingは比較表で、Maternity / Newborn / Familyも料金ページにまとめています。</p>
-      <a class="button" href="/price/">料金を見る</a>
+      <a class="button" href="/price/">プランと料金を確認する</a>
     </div>
   </section>
 
@@ -132,7 +129,7 @@ const { hero, works, about, finalCta, social } = siteContent;
       <p>{finalCta.note}</p>
     </div>
     <div class="cta-section__actions" data-animate="fade-up">
-      <a class="button" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>
+      <a class="button" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで撮影について相談する</a>
     </div>
   </section>
 </BaseLayout>
