@@ -49,6 +49,7 @@ const { hero, works, about, finalCta, social } = siteContent;
         ))
       }
     </div>
+    <p class="section-link" data-animate="fade-up"><a href="/works/">Worksをもっと見る</a></p>
   </section>
 
   <section class="section section--paper" aria-labelledby="top-about-title">
@@ -85,7 +86,7 @@ const { hero, works, about, finalCta, social } = siteContent;
     <div class="social-grid">
       {
         social.links.map((link) => (
-          <a class="social-card" href={link.href} target="_blank" rel="noreferrer" data-primary={link.primary ? "true" : undefined} data-animate="fade-up">
+          <a class="social-card" href={link.href} target="_blank" rel="noreferrer" data-animate="fade-up">
             <span>{link.label}</span>
             <strong>{link.text}</strong>
           </a>
@@ -102,8 +103,7 @@ const { hero, works, about, finalCta, social } = siteContent;
       <p>{finalCta.note}</p>
     </div>
     <div class="cta-section__actions" data-animate="fade-up">
-      <a class="button button--light" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>
-      <a class="button button--ghost" href="/flow/">相談から納品までの流れを見る</a>
+      <a class="button" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで相談する</a>
     </div>
   </section>
 </BaseLayout>

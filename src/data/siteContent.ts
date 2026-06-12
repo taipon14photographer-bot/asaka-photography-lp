@@ -218,15 +218,15 @@ export const siteContent = {
     ],
   },
   finalCta: {
-    title: "写真を見て、気になったところから相談してください。",
+    title: "写真を見て、少しでも気になったら。",
     body:
-      "撮影場所、日程、プラン、子ども撮影の不安まで。まだ何も決まっていなくても大丈夫です。",
-    note: "予約するかどうかは、相談してから決めても大丈夫です。",
+      "撮影場所や日程、どんな写真を残したいか。まだ何も決まっていなくても大丈夫です。",
+    note: "まずはお気軽にご相談ください。",
   },
   social: {
     title: "比較検討中の方へ",
     body:
-      "Instagramとnoteは補助導線です。撮影を具体的に相談したい場合は、LINEからご連絡ください。",
+      "Instagramでは写真の雰囲気を、noteでは撮影への考え方を見ていただけます。",
     links: [
       {
         label: "Instagram",
@@ -237,12 +237,6 @@ export const siteContent = {
         label: "note",
         href: siteLinks.note,
         text: "撮影への考え方を読む",
-      },
-      {
-        label: "LINE",
-        href: siteLinks.line,
-        text: "撮影を相談する",
-        primary: true,
       },
     ],
   },
