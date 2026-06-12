@@ -317,7 +317,7 @@ h2 {
   line-break: strict;
   overflow-wrap: normal;
   word-break: normal;
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 
 h1 {
@@ -335,6 +335,10 @@ h3 {
   font-size: 1.18rem;
   font-weight: 500;
   line-height: 1.45;
+}
+
+.balanced-heading span {
+  display: inline-block;
 }
 
 h4 {
