@@ -34,48 +34,64 @@ const sortedImages = (modules: Record<string, unknown>, limit: number): ImageMet
   return entries.map(([, image]) => image).slice(0, limit);
 };
 
+const pickImages = (modules: Record<string, unknown>, names: string[]): ImageMetadata[] => {
+  const entries = Object.entries(modules) as Array<[string, ImageMetadata]>;
+  return names
+    .map((name) => entries.find(([path]) => path.endsWith(name))?.[1])
+    .filter((image): image is ImageMetadata => Boolean(image));
+};
+
 const gallerySections = [
   {
     id: "wedding",
     title: "Wedding Gallery",
     lead: "ふたりで始まる、家族の時間。光、距離感、照れた表情まで。",
     alt: "ウェディング前撮りの写真",
-    images: sortedImages(weddingModules, 15),
+    images: pickImages(weddingModules, [
+      "01-kuboi-wedding-91.jpg",
+      "11-ikeda-18.jpg",
+      "12-ikeda-20.jpg",
+      "03-mori-prewedding-200.jpg",
+      "02-kazuki-emiri-159.jpg",
+      "05-kuboi-wedding-105.jpg",
+      "15-takano-prewedding-153.jpg",
+      "13-kuboi-wedding-144.jpg",
+    ]),
   },
   {
     id: "maternity",
     title: "Maternity Gallery",
     lead: "まだ会えない子と、もう始まっている家族の時間。",
     alt: "マタニティフォトの写真",
-    images: sortedImages(maternityModules, 9),
+    images: sortedImages(maternityModules, 6),
   },
   {
     id: "newborn",
     title: "Newborn Gallery",
     lead: "家族になったばかりの、まなざしと手の温度。",
     alt: "ニューボーンフォトの写真",
-    images: sortedImages(newbornModules, 9),
+    images: sortedImages(newbornModules, 7),
   },
   {
     id: "omiyamairi",
     title: "お宮参り Gallery",
     lead: "はじめて家族で祈る日。抱っこする人、見守る人、その日の空気まで。",
     alt: "お宮参りの写真",
-    images: sortedImages(omiyamairiModules, 9),
+    images: sortedImages(omiyamairiModules, 5),
   },
   {
     id: "753",
     title: "七五三 Gallery",
     lead: "少し大きくなった今を、家族みんなで見つめる日。",
     alt: "七五三の写真",
-    images: sortedImages(shichigosanModules, 9),
+    images: sortedImages(shichigosanModules, 5),
   },
   {
     id: "family",
     title: "Family Gallery",
     lead: "特別な日だけではなく、何気ない日にも残したい幸せがあります。",
     alt: "家族写真",
-    images: sortedImages(familyModules, 9),
+    images: sortedImages(familyModules, 6),
   },
 ];
 
@@ -91,8 +107,11 @@ const { works } = siteContent;
     </div>
   </section>
 
-  <nav class="gallery-nav" aria-label="ギャラリー内リンク" data-animate="fade-in">
-    {gallerySections.map((section) => <a href={`#${section.id}`}>{section.title.replace(" Gallery", "")}</a>)}
+  <nav class="gallery-story-nav" aria-label="人生の流れで見るギャラリー">
+    <p>人生の流れを、写真でたどる。</p>
+    <ol>
+      {gallerySections.map((section) => <li><a href={`#${section.id}`}>{section.title.replace(" Gallery", "")}</a></li>)}
+    </ol>
   </nav>
 
   {
