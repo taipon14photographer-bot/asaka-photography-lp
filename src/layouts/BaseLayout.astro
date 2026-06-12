@@ -22,7 +22,7 @@ const configuredSite =
 const canonicalUrl = new URL(Astro.url.pathname, configuredSite).toString();
 const ogImageUrl = new URL(image, configuredSite).toString();
 const clarityProjectId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
-const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? "G-KCDDX4Y6VP";
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 ---
 
