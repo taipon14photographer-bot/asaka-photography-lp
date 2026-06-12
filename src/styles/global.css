@@ -188,8 +188,8 @@ a {
   inset: 0;
   content: "";
   background:
-    linear-gradient(180deg, rgba(37, 50, 70, 0.01), rgba(37, 50, 70, 0.08) 48%, rgba(28, 32, 38, 0.46)),
-    linear-gradient(90deg, rgba(37, 50, 70, 0.14), rgba(37, 50, 70, 0.02) 68%);
+    linear-gradient(180deg, rgba(24, 31, 42, 0.28), rgba(37, 50, 70, 0.08) 46%, rgba(28, 32, 38, 0.12)),
+    linear-gradient(90deg, rgba(24, 31, 42, 0.28), rgba(37, 50, 70, 0.03) 70%);
 }
 
 .hero__media picture,
@@ -212,8 +212,8 @@ a {
   inset: 0;
   z-index: 1;
   display: flex;
-  align-items: flex-end;
-  padding: 0 clamp(1rem, 5vw, 5rem) 1.05rem;
+  align-items: flex-start;
+  padding: clamp(1.05rem, 7vw, 2rem) clamp(1rem, 5vw, 5rem) 0;
 }
 
 .hero__content {
@@ -229,10 +229,10 @@ a {
   margin: 0;
   max-width: 23rem;
   color: #fffdf8;
-  font-size: clamp(1.18rem, 5.2vw, 2.2rem);
+  font-size: clamp(1.12rem, 4.95vw, 2.05rem);
   font-weight: 500;
   line-height: 1.52;
-  text-shadow: 0 2px 18px rgba(13, 18, 24, 0.28);
+  text-shadow: 0 2px 20px rgba(13, 18, 24, 0.36);
   text-wrap: initial;
 }
 
@@ -549,6 +549,29 @@ h4 {
 .about-brief .button {
   margin-top: 0.2rem;
   justify-self: start;
+}
+
+.note-link-panel {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 1.2rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+
+.note-link-panel p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.text-link {
+  color: var(--gold-deep);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration-color: rgba(143, 111, 58, 0.42);
+  text-underline-offset: 0.28em;
 }
 
 .quiet-statement {
@@ -1009,18 +1032,18 @@ details p {
 
   .hero__media::after {
     background:
-      linear-gradient(180deg, rgba(37, 50, 70, 0.02), rgba(37, 50, 70, 0.08) 46%, rgba(22, 27, 34, 0.52)),
-      linear-gradient(90deg, rgba(37, 50, 70, 0.32), rgba(37, 50, 70, 0.04) 68%);
+      linear-gradient(180deg, rgba(24, 31, 42, 0.3), rgba(37, 50, 70, 0.07) 44%, rgba(22, 27, 34, 0.16)),
+      linear-gradient(90deg, rgba(24, 31, 42, 0.34), rgba(37, 50, 70, 0.04) 68%);
   }
 
   .hero__overlay {
-    padding: clamp(5rem, 12vw, 8rem) clamp(2rem, 7vw, 6rem) clamp(2rem, 5vw, 4rem);
+    padding: clamp(2rem, 8vw, 5rem) clamp(2rem, 7vw, 6rem) 0;
   }
 
   .hero h1 {
     max-width: 760px;
     color: #fffdf8;
-    font-size: clamp(2.55rem, 4.25vw, 4.05rem);
+    font-size: clamp(2.15rem, 3.65vw, 3.45rem);
     line-height: 1.32;
   }
 
