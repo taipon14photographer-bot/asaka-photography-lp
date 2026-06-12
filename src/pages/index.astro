@@ -89,7 +89,34 @@ const { hero, works, about, finalCta, social } = siteContent;
       {
         social.links.map((link) => (
           <a class="social-card" href={link.href} target="_blank" rel="noreferrer" data-animate="fade-up">
-            <span>{link.label}</span>
+            <span class="social-card__icon" aria-hidden="true">
+              {
+                link.label === "Instagram" && (
+                  <svg viewBox="0 0 24 24" role="img">
+                    <rect x="4.5" y="4.5" width="15" height="15" rx="4.2" />
+                    <circle cx="12" cy="12" r="3.4" />
+                    <circle cx="16.4" cy="7.7" r="0.9" />
+                  </svg>
+                )
+              }
+              {
+                link.label === "note" && (
+                  <svg viewBox="0 0 24 24" role="img">
+                    <rect x="4.5" y="4.5" width="15" height="15" rx="3.2" />
+                    <path d="M9 15.8V8.2h1.9l3.2 4.5V8.2H16v7.6h-1.9l-3.2-4.5v4.5H9z" fill="currentColor" stroke="none" />
+                  </svg>
+                )
+              }
+              {
+                link.label === "LINE" && (
+                  <svg viewBox="0 0 24 24" role="img">
+                    <path d="M12 5.2c4.4 0 8 2.8 8 6.3 0 3.4-3.4 6.1-7.6 6.3l-3.5 2.1.7-2.6C6.3 16.4 4 14.1 4 11.5c0-3.5 3.6-6.3 8-6.3z" />
+                    <path d="M8.4 10.4v2.6h1.8M11.4 10.4v2.6M13 10.4l1.7 2.6v-2.6M17 10.4h-1.6v2.6H17M15.5 11.7h1.2" />
+                  </svg>
+                )
+              }
+            </span>
+            <span class="social-card__label">{link.label}</span>
             <strong>{link.text}</strong>
           </a>
         ))

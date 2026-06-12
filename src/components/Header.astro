@@ -4,9 +4,10 @@ import { navItems, siteLinks } from "../data/siteContent";
 const currentPath = Astro.url.pathname;
 const isActive = (href: string) => href === "/" ? currentPath === "/" : currentPath.startsWith(href);
 const mobileNavItems = [
-  { label: "Works", href: "/works/" },
   { label: "About", href: "/about/" },
+  { label: "Works", href: "/works/" },
   { label: "Price", href: "/price/" },
+  { label: "Flow", href: "/flow/" },
   { label: "FAQ", href: "/faq/" },
 ];
 ---

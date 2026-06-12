@@ -65,9 +65,8 @@ export const siteContent = {
       "写真が苦手でも、最初から上手に写ろうとしなくて大丈夫です。お二人やご家族のペースを見ながら、必要なところはこちらで声をかけて整えていきます。",
   },
   works: {
-    title: "人生の節目を、写真でたどれるように。",
-    body:
-      "WeddingからFamilyまで、ジャンルを分けて見せるのではなく、人生の流れとして写真を並べます。まずは写真を見ながら、自分たちが残したい時間を想像してください。",
+    title: "人生の節目を、写真でたどる。",
+    body: "WeddingからFamilyまで、人生の流れに沿って写真を並べています。",
     preview: [
       {
         label: "Wedding",
@@ -225,10 +224,10 @@ export const siteContent = {
     ],
   },
   finalCta: {
-    title: "写真を見て、少しでも気になったら。",
+    title: "大切に残したい時間について、お話ししませんか。",
     body:
       "撮影場所や日程、どんな写真を残したいか。まだ何も決まっていなくても大丈夫です。",
-    note: "まずはお気軽にご相談ください。",
+    note: "言葉になっていないイメージからでも、ゆっくり一緒に整理します。",
   },
   social: {
     title: "比較検討中の方へ",
@@ -244,6 +243,11 @@ export const siteContent = {
         label: "note",
         href: siteLinks.note,
         text: "撮影への考え方を読む",
+      },
+      {
+        label: "LINE",
+        href: siteLinks.line,
+        text: "撮影を相談する",
       },
     ],
   },
