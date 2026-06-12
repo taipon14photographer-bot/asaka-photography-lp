@@ -64,7 +64,8 @@ export const siteContent = {
   },
   works: {
     title: "人生の節目を、写真でたどる。",
-    body: "WeddingからFamilyまで、人生の流れに沿って写真を並べています。",
+    body:
+      "WeddingからFamilyまで、人生の流れに沿って写真を並べています。まずは、残したい時間に近い写真からご覧ください。",
     preview: [
       {
         label: "Wedding",

@@ -4,40 +4,77 @@ import type { ImageMetadata } from "astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { siteContent, siteLinks } from "../data/siteContent";
 
-const weddingModules = import.meta.glob("../assets/photos/works-gallery/wedding/*.jpg", {
+const weddingModules = import.meta.glob([
+  "../assets/photos/works-gallery/wedding/*.jpg",
+  "../assets/photos/works-gallery/wedding/*.JPG",
+  "../assets/photos/works-gallery/wedding/*.jpeg",
+  "../assets/photos/works-gallery/wedding/*.JPEG",
+  "../assets/photos/works-gallery/wedding/*.png",
+  "../assets/photos/works-gallery/wedding/*.PNG",
+], {
   eager: true,
   import: "default",
 });
-const maternityModules = import.meta.glob("../assets/photos/works-gallery/maternity/*.jpg", {
+const maternityModules = import.meta.glob([
+  "../assets/photos/works-gallery/maternity/*.jpg",
+  "../assets/photos/works-gallery/maternity/*.JPG",
+  "../assets/photos/works-gallery/maternity/*.jpeg",
+  "../assets/photos/works-gallery/maternity/*.JPEG",
+  "../assets/photos/works-gallery/maternity/*.png",
+  "../assets/photos/works-gallery/maternity/*.PNG",
+], {
   eager: true,
   import: "default",
 });
-const newbornModules = import.meta.glob("../assets/photos/works-gallery/newborn/*.jpg", {
+const newbornModules = import.meta.glob([
+  "../assets/photos/works-gallery/newborn/*.jpg",
+  "../assets/photos/works-gallery/newborn/*.JPG",
+  "../assets/photos/works-gallery/newborn/*.jpeg",
+  "../assets/photos/works-gallery/newborn/*.JPEG",
+  "../assets/photos/works-gallery/newborn/*.png",
+  "../assets/photos/works-gallery/newborn/*.PNG",
+], {
   eager: true,
   import: "default",
 });
-const omiyamairiModules = import.meta.glob("../assets/photos/works-gallery/omiyamairi/*.jpg", {
+const omiyamairiModules = import.meta.glob([
+  "../assets/photos/works-gallery/omiyamairi/*.jpg",
+  "../assets/photos/works-gallery/omiyamairi/*.JPG",
+  "../assets/photos/works-gallery/omiyamairi/*.jpeg",
+  "../assets/photos/works-gallery/omiyamairi/*.JPEG",
+  "../assets/photos/works-gallery/omiyamairi/*.png",
+  "../assets/photos/works-gallery/omiyamairi/*.PNG",
+], {
   eager: true,
   import: "default",
 });
-const shichigosanModules = import.meta.glob("../assets/photos/works-gallery/shichigosan/*.jpg", {
+const shichigosanModules = import.meta.glob([
+  "../assets/photos/works-gallery/shichigosan/*.jpg",
+  "../assets/photos/works-gallery/shichigosan/*.JPG",
+  "../assets/photos/works-gallery/shichigosan/*.jpeg",
+  "../assets/photos/works-gallery/shichigosan/*.JPEG",
+  "../assets/photos/works-gallery/shichigosan/*.png",
+  "../assets/photos/works-gallery/shichigosan/*.PNG",
+], {
   eager: true,
   import: "default",
 });
-const familyModules = import.meta.glob("../assets/photos/works-gallery/family/*.jpg", {
+const familyModules = import.meta.glob([
+  "../assets/photos/works-gallery/family/*.jpg",
+  "../assets/photos/works-gallery/family/*.JPG",
+  "../assets/photos/works-gallery/family/*.jpeg",
+  "../assets/photos/works-gallery/family/*.JPEG",
+  "../assets/photos/works-gallery/family/*.png",
+  "../assets/photos/works-gallery/family/*.PNG",
+], {
   eager: true,
   import: "default",
 });
-
-const sortedImages = (modules: Record<string, unknown>, limit: number): ImageMetadata[] => {
-  const entries = Object.entries(modules).sort(([a], [b]) => a.localeCompare(b, "ja")) as Array<[string, ImageMetadata]>;
-  return entries.map(([, image]) => image).slice(0, limit);
-};
 
 const pickImages = (modules: Record<string, unknown>, names: string[]): ImageMetadata[] => {
   const entries = Object.entries(modules) as Array<[string, ImageMetadata]>;
   return names
-    .map((name) => entries.find(([path]) => path.endsWith(name))?.[1])
+    .map((name) => entries.find(([path]) => path.toLowerCase().endsWith(name.toLowerCase()))?.[1])
     .filter((image): image is ImageMetadata => Boolean(image));
 };
 
@@ -63,35 +100,69 @@ const gallerySections = [
     title: "Maternity Gallery",
     lead: "まだ会えない子と、もう始まっている家族の時間。",
     alt: "マタニティフォトの写真",
-    images: sortedImages(maternityModules, 6),
+    images: pickImages(maternityModules, [
+      "01-arisa-165.jpg",
+      "05-utsumi-70.jpg",
+      "06-nakano-175.jpg",
+      "02-utsumi-103.jpg",
+      "04-utsumi-177.jpg",
+      "03-utsumi-15.jpg",
+    ]),
   },
   {
     id: "newborn",
     title: "Newborn Gallery",
     lead: "家族になったばかりの、まなざしと手の温度。",
     alt: "ニューボーンフォトの写真",
-    images: sortedImages(newbornModules, 7),
+    images: pickImages(newbornModules, [
+      "01-riri-66.jpg",
+      "03-riri-314.jpg",
+      "02-riri-160.jpg",
+      "04-arii-213.jpg",
+      "05-ao-birth-319.jpg",
+      "06-riri-55.jpg",
+      "07-riri-36.jpg",
+    ]),
   },
   {
     id: "omiyamairi",
     title: "お宮参り Gallery",
     lead: "はじめて家族で祈る日。抱っこする人、見守る人、その日の空気まで。",
     alt: "お宮参りの写真",
-    images: sortedImages(omiyamairiModules, 5),
+    images: pickImages(omiyamairiModules, [
+      "01-omiyamairi-148.jpg",
+      "02-uryu-173.jpg",
+      "03-uryu-145.jpg",
+      "05-uryu-181.jpg",
+      "04-uryu-147.jpg",
+    ]),
   },
   {
     id: "753",
     title: "七五三 Gallery",
     lead: "少し大きくなった今を、家族みんなで見つめる日。",
     alt: "七五三の写真",
-    images: sortedImages(shichigosanModules, 5),
+    images: pickImages(shichigosanModules, [
+      "01-yuma-sena-203.jpg",
+      "03-yuma-sena-194.jpg",
+      "04-yuma-sena-181.jpg",
+      "02-20240421-362.jpg",
+      "05-20240421-394.jpg",
+    ]),
   },
   {
     id: "family",
     title: "Family Gallery",
     lead: "特別な日だけではなく、何気ない日にも残したい幸せがあります。",
     alt: "家族写真",
-    images: sortedImages(familyModules, 6),
+    images: pickImages(familyModules, [
+      "01-day-camp-75.jpg",
+      "03-ena-224.jpg",
+      "02-day-camp-139.jpg",
+      "04-takagi-76.jpg",
+      "05-sone-127.jpg",
+      "06-20240414-458.jpg",
+    ]),
   },
 ];
 
@@ -107,11 +178,11 @@ const { works } = siteContent;
     </div>
   </section>
 
-  <nav class="gallery-story-nav" aria-label="人生の流れで見るギャラリー">
+  <nav class="gallery-chip-nav" aria-label="人生の流れで見るギャラリー">
     <p>人生の流れを、写真でたどる。</p>
-    <ol>
-      {gallerySections.map((section) => <li><a href={`#${section.id}`}>{section.title.replace(" Gallery", "")}</a></li>)}
-    </ol>
+    <div class="gallery-chip-nav__scroller">
+      {gallerySections.map((section) => <a href={`#${section.id}`}>{section.title.replace(" Gallery", "")}</a>)}
+    </div>
   </nav>
 
   {
@@ -122,9 +193,9 @@ const { works } = siteContent;
           <h2 id={`${section.id}-title`}>{section.title}</h2>
           <p class="lead">{section.lead}</p>
         </div>
-        <div class="masonry">
+        <div class="gallery-grid">
           {section.images.map((image, imageIndex) => (
-            <figure>
+            <figure class:list={["gallery-frame", imageIndex === 0 && "gallery-frame--feature"]}>
               <Image
                 src={image}
                 alt={`${section.alt} ${imageIndex + 1}`}
