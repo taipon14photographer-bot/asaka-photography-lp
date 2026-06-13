@@ -1438,6 +1438,10 @@ summary {
     aspect-ratio: 16 / 9;
   }
 
+  .hero__media img {
+    object-position: 54% 70%;
+  }
+
   .hero__media::after {
     background:
       linear-gradient(180deg, rgba(24, 31, 42, 0.3), rgba(37, 50, 70, 0.07) 44%, rgba(22, 27, 34, 0.16)),
