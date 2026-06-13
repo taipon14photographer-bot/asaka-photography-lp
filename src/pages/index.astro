@@ -26,8 +26,13 @@ const { hero, works, about, voice, finalCta, social } = siteContent;
           {hero.titleLines.map((line) => <span>{line}</span>)}
         </h1>
       </div>
+      <div class="hero__content hero__content--desktop">
+        <div class="hero__actions">
+          <a class="button" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで撮影相談する</a>
+        </div>
+      </div>
     </div>
-    <div class="hero__content">
+    <div class="hero__content hero__content--mobile">
       <div class="hero__actions">
         <a class="button" href={siteLinks.line} target="_blank" rel="noreferrer">LINEで撮影相談する</a>
       </div>
