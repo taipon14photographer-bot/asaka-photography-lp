@@ -1431,6 +1431,10 @@ summary {
     color: var(--ink);
   }
 
+  .hero > * {
+    grid-area: 1 / 1;
+  }
+
   .hero__media {
     position: relative;
     inset: auto;
@@ -1463,6 +1467,7 @@ summary {
     position: absolute;
     bottom: clamp(1.6rem, 4vw, 3rem);
     left: 0;
+    align-self: end;
     gap: 0.8rem;
     padding: 0 clamp(2rem, 7vw, 6rem);
   }
