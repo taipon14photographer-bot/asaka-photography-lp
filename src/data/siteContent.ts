@@ -64,13 +64,13 @@ export const siteContent = {
     profile: {
       title: "Profile",
       name: "朝香大樹",
-      lead: "静岡・伊豆を中心に、WeddingからFamilyまで、人生の節目に寄り添って撮影しています。",
-      items: [
-        { label: "看護師", text: "人の状態や安心感を見る経験" },
-        { label: "フォトグラファー", text: "節目の撮影を中心に対応" },
-        { label: "二児の父", text: "子どものペースも大切に" },
-        { label: "撮影実績80件以上", text: "初めての撮影にも寄り添います" },
+      role: "ASAKA Photography / Photographer",
+      body: [
+        "静岡・伊豆を中心に、Wedding・Maternity・Newborn・お宮参り・七五三・Familyの撮影をしています。",
+        "急性期病院で看護師として働きながら、二児の父として、子どものペースや家族の空気感を大切にしています。",
+        "初めての撮影でも安心して過ごせるように、無理に作り込みすぎず、その日らしい表情や関係性を残します。",
       ],
+      tags: ["看護師", "二児の父", "撮影実績80件以上"],
     },
   },
   voice: {

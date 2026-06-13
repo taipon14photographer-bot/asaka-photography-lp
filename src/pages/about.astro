@@ -7,16 +7,29 @@ const { about } = siteContent;
 ---
 
 <BaseLayout title="About | ASAKA Photography" description="ASAKA Photographyの朝香大樹が撮影で大切にしていること。撮る前に、人を見るという姿勢について。">
-  <section class="page-hero page-hero--about-photo" aria-label="朝香大樹のプロフィール写真">
-    <div class="page-hero__image page-hero__image--about" data-animate="image-reveal">
-      <Image src={about.image.src} alt={about.image.alt} width={900} height={600} loading="eager" decoding="async" />
-    </div>
+  <section class="section section--paper" aria-labelledby="profile-title">
+    <article class="profile-card profile-card--feature" data-animate="fade-up">
+      <div class="profile-card__image" data-animate="image-reveal">
+        <Image src={about.image.src} alt={about.image.alt} width={900} height={600} loading="eager" decoding="async" />
+      </div>
+      <div class="profile-card__content">
+        <p class="section-kicker">{about.profile.title}</p>
+        <h1 id="profile-title">{about.profile.name}</h1>
+        <p class="profile-card__role">{about.profile.role}</p>
+        <div class="section-copy profile-card__body">
+          {about.profile.body.map((line) => <p>{line}</p>)}
+        </div>
+        <div class="profile-card__tags" aria-label="朝香大樹のプロフィールタグ">
+          {about.profile.tags.map((tag) => <span>{tag}</span>)}
+        </div>
+      </div>
+    </article>
   </section>
 
-  <section class="section section--paper" aria-labelledby="about-title">
+  <section class="section" aria-labelledby="about-title">
     <div class="about-brief" data-animate="fade-up">
       <p class="eyebrow">About</p>
-      <h1 id="about-title">{about.title}</h1>
+      <h2 id="about-title">{about.title}</h2>
       <div class="section-copy">
         {about.body.map((line) => <p>{line}</p>)}
       </div>
@@ -24,26 +37,6 @@ const { about } = siteContent;
       <div class="note-link-panel">
         <p>もっと詳しい撮影への考え方は、noteで発信しています。</p>
         <a class="text-link" href={siteLinks.note} target="_blank" rel="noreferrer">撮影への考え方を読む</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="profile-title">
-    <div class="profile-panel" data-animate="fade-up">
-      <div>
-        <p class="section-kicker">{about.profile.title}</p>
-        <h2 id="profile-title">{about.profile.name}</h2>
-        <p class="lead">{about.profile.lead}</p>
-      </div>
-      <div class="profile-grid" aria-label="朝香大樹のプロフィール">
-        {
-          about.profile.items.map((item) => (
-            <article class="profile-card">
-              <h3>{item.label}</h3>
-              <p>{item.text}</p>
-            </article>
-          ))
-        }
       </div>
     </div>
   </section>
