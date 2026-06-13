@@ -1460,8 +1460,11 @@ summary {
   }
 
   .hero__content {
+    position: absolute;
+    bottom: clamp(1.6rem, 4vw, 3rem);
+    left: 0;
     gap: 0.8rem;
-    padding: 1rem clamp(2rem, 7vw, 6rem) 2.2rem;
+    padding: 0 clamp(2rem, 7vw, 6rem);
   }
 
   .hero__actions {
