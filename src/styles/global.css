@@ -133,12 +133,12 @@ a {
 }
 
 .site-header__line {
-  min-height: 34px;
-  padding: 0.36rem 0.58rem;
+  min-height: 38px;
+  padding: 0.42rem 0.68rem;
   border: 1px solid var(--line);
   background: rgba(255, 253, 248, 0.9);
   box-shadow: var(--soft-shadow);
-  font-size: 0.72rem;
+  font-size: 0.76rem;
 }
 
 .button {
@@ -881,6 +881,27 @@ h4 {
   gap: clamp(0.85rem, 3vw, 1.8rem);
   max-width: 980px;
   margin: 0 auto;
+}
+
+.gallery-section__cta {
+  display: grid;
+  gap: 0.72rem;
+  justify-items: center;
+  max-width: 560px;
+  margin: clamp(1.35rem, 4vw, 2rem) auto 0;
+  text-align: center;
+}
+
+.gallery-section__cta p {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.gallery-section__cta .button {
+  width: min(100%, 280px);
 }
 
 .gallery-frame {
