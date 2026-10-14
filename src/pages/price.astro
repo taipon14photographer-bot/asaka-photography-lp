@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { options, otherPlanCategories, siteLinks, weddingComparison } from "../data/siteContent";
+import { additionalCosts, options, otherPlanCategories, siteLinks, weddingComparison } from "../data/siteContent";
 ---
 
 <BaseLayout title="Price | ASAKA Photography" description="静岡・伊豆を中心としたASAKA Photographyの出張撮影料金。前撮り、マタニティフォト、ニューボーンフォト、家族写真のプランを確認できます。">
@@ -9,10 +9,16 @@ import { options, otherPlanCategories, siteLinks, weddingComparison } from "../d
       <p class="eyebrow">Price</p>
       <h1 id="price-title">料金とプランを確認できます。</h1>
       <p class="lead">撮影ジャンルごとに、料金・撮影時間・納品枚数をまとめています。迷ったら、決まっていない状態でもご相談ください。</p>
+      <p class="pricing-policy">表示料金はすべて税込・平日／土日祝共通です。</p>
+      <nav class="pricing-jump" aria-label="撮影ジャンル別の料金">
+        <a href="#wedding">Wedding</a>
+        {otherPlanCategories.map((category) => <a href={`#${category.key}`}>{category.title}</a>)}
+        <a href="#additional-costs">追加費用</a>
+      </nav>
     </div>
   </section>
 
-  <section class="section section--beige" aria-labelledby="wedding-price-title">
+  <section class="section section--beige pricing-section" id="wedding" aria-labelledby="wedding-price-title">
     <div class="section-head section-head--wide" data-animate="fade-up">
       <p class="section-kicker">Wedding</p>
       <h2 id="wedding-price-title">{weddingComparison.title}</h2>
@@ -22,42 +28,47 @@ import { options, otherPlanCategories, siteLinks, weddingComparison } from "../d
     <div class="price-summary-grid">
       {
         weddingComparison.plans.map((plan) => (
-          <article class:list={["price-plan", plan.recommended && "is-recommended"]} data-animate="fade-up">
+          <article class:list={["price-plan", plan.recommended && "is-recommended"]} aria-label={`Wedding ${plan.name}の料金`}>
             {plan.recommended && <span class="badge">おすすめ</span>}
             <h3>{plan.name}</h3>
             <div class="price-pair">
-              <p><span>平日</span> {plan.weekday}</p>
-              <p><span>土日祝</span> {plan.weekend}</p>
+              <strong class="plan-amount">{plan.price}</strong>
+              <span>税込・曜日共通</span>
             </div>
             <p>{plan.summary}</p>
+            <dl class="plan-details price-plan__details">
+              {weddingComparison.rows.map((row) => <div><dt>{row.label}</dt><dd>{plan[row.key]}</dd></div>)}
+            </dl>
+            <a class="button button--ghost plan-consult" href={siteLinks.line} target="_blank" rel="noreferrer" aria-label={`Wedding ${plan.name}についてLINEで相談する`}>LINEで相談する</a>
           </article>
         ))
       }
     </div>
 
-    <p class="compare-note" data-animate="fade-up">プラン比較（横にスクロールできます）</p>
-
-    <div class="compare-wrap" data-animate="fade-up">
+    <div class="compare-wrap">
       <table class="compare-table">
+        <caption>Wedding 3プランの撮影内容</caption>
         <thead>
           <tr>
-            <th>比較項目</th>
-            {weddingComparison.plans.map((plan) => <th>{plan.name}{plan.recommended ? "（おすすめ）" : ""}</th>)}
+            <th scope="col">比較項目</th>
+            {weddingComparison.plans.map((plan) => <th scope="col">{plan.name}{plan.recommended ? "（おすすめ）" : ""}</th>)}
           </tr>
         </thead>
         <tbody>
           {
             weddingComparison.rows.map((row) => (
               <tr>
-                <th>{row.label}</th>
-                <td>{row.casual}</td>
-                <td>{row.essential}</td>
-                <td>{row.signature}</td>
+                <th scope="row">{row.label}</th>
+                {weddingComparison.plans.map((plan) => <td>{plan[row.key]}</td>)}
               </tr>
             ))
           }
         </tbody>
       </table>
+    </div>
+    <div class="pricing-notes">
+      <p>撮影時間には移動・衣装チェンジを含みます。</p>
+      <p>A3プリントは標準付属ではなく、全プランでオプションです。</p>
     </div>
   </section>
 
@@ -67,26 +78,31 @@ import { options, otherPlanCategories, siteLinks, weddingComparison } from "../d
       <h2 id="other-price-title" class="balanced-heading mobile-line-break">
         <span>撮影ジャンルごとに、</span><span>プランを選べます。</span>
       </h2>
-      <p class="lead">マタニティ、家族写真、ニューボーンも、撮影時間と残したい内容に合わせて選べます。</p>
+      <p class="lead">Maternity・Familyは単一プラン、Newbornは撮影内容の異なる2つのプランをご案内しています。</p>
     </div>
 
     {
       otherPlanCategories.map((category) => (
-        <section class="other-category" aria-labelledby={`${category.title}-price-title`} data-animate="fade-up">
+        <section class="other-category pricing-section" id={category.key} aria-labelledby={`${category.title}-price-title`}>
           <h3 id={`${category.title}-price-title`}>{category.title}</h3>
           <p>{category.description}</p>
-          <div class="other-plan-grid">
+          <div class:list={["other-plan-grid", category.plans.length === 1 && "is-single-plan"]}>
             {category.plans.map((plan) => (
-              <article class:list={["other-plan", plan.recommended && "is-recommended"]}>
-                {plan.recommended && <span class="badge">おすすめ</span>}
-                <h4>{plan.name}</h4>
+              <article class="other-plan" id={plan.key} aria-label={`${plan.name}の料金`}>
+                {category.plans.length > 1 && <h4>{plan.name}</h4>}
                 <div class="price-pair">
-                  <p><span>平日</span> {plan.weekday}</p>
-                  <p><span>土日祝</span> {plan.weekend}</p>
+                  <strong class="plan-amount">{plan.price}</strong>
+                  <span>税込・曜日共通</span>
                 </div>
+                <dl class="plan-details">
+                  <div><dt>撮影時間</dt><dd>{plan.duration}</dd></div>
+                  <div><dt>納品枚数</dt><dd>{plan.delivery}</dd></div>
+                </dl>
                 <ul>
                   {plan.details.map((detail) => <li>{detail}</li>)}
                 </ul>
+                {plan.notes.map((note) => <p class="plan-note">{note}</p>)}
+                <a class="button button--ghost plan-consult" href={siteLinks.line} target="_blank" rel="noreferrer" aria-label={`${plan.name}についてLINEで相談する`}>LINEで相談する</a>
               </article>
             ))}
           </div>
@@ -95,7 +111,7 @@ import { options, otherPlanCategories, siteLinks, weddingComparison } from "../d
     }
   </section>
 
-  <section class="section section--paper" aria-labelledby="options-title">
+  <section class="section section--paper pricing-section" id="options" aria-labelledby="options-title">
     <div class="section-head" data-animate="fade-up">
       <p class="section-kicker">Options</p>
       <h2 id="options-title" class="balanced-heading mobile-line-break">
@@ -107,11 +123,24 @@ import { options, otherPlanCategories, siteLinks, weddingComparison } from "../d
         options.map((option) => (
           <article class="option-card" data-animate="fade-up">
             <h3>{option.title}</h3>
-            <p class="price-pair">{option.text}</p>
+            <p class="price-pair">{option.text}<span>税込</span></p>
             {option.note && <p>{option.note}</p>}
           </article>
         ))
       }
+    </div>
+  </section>
+
+  <section class="section pricing-section" id="additional-costs" aria-labelledby="additional-costs-title">
+    <div class="section-head">
+      <p class="section-kicker">Additional Costs</p>
+      <h2 id="additional-costs-title">追加費用は、予約前にご案内します。</h2>
+    </div>
+    <div class="option-card pricing-costs">
+      <p>{additionalCosts.note}</p>
+      <ul>{additionalCosts.guestPaid.map((cost) => <li>{cost}</li>)}</ul>
+      <p>{additionalCosts.travel}</p>
+      <a class="button button--ghost" href={siteLinks.line} target="_blank" rel="noreferrer">撮影場所と費用をLINEで相談する</a>
     </div>
   </section>
 
@@ -130,3 +159,141 @@ import { options, otherPlanCategories, siteLinks, weddingComparison } from "../d
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .pricing-policy {
+    color: var(--ink);
+    font-family: var(--sans);
+  }
+
+  .pricing-jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+    font-family: var(--sans);
+  }
+
+  .pricing-jump a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--paper);
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+
+  .pricing-section,
+  .other-plan {
+    scroll-margin-top: 6.5rem;
+  }
+
+  .price-summary-grid,
+  .other-plan-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .price-plan,
+  .other-plan {
+    min-width: 0;
+  }
+
+  .plan-amount {
+    font-size: 1.6rem;
+    line-height: 1.4;
+  }
+
+  .plan-details {
+    display: grid;
+    gap: 0.65rem;
+    margin: 1rem 0;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+  }
+
+  .plan-details > div {
+    display: grid;
+    grid-template-columns: minmax(5.5rem, 0.5fr) minmax(0, 1fr);
+    gap: 0.5rem;
+    padding-bottom: 0.65rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .plan-details dt {
+    color: var(--muted);
+  }
+
+  .plan-details dd {
+    margin: 0;
+  }
+
+  .plan-note {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+
+  .plan-consult {
+    margin-top: 1rem;
+  }
+
+  .compare-wrap {
+    display: none;
+  }
+
+  .pricing-notes,
+  .pricing-costs {
+    max-width: 1120px;
+    margin: 1rem auto 0;
+  }
+
+  .pricing-notes {
+    color: var(--muted);
+    font-family: var(--sans);
+    font-size: 0.9rem;
+  }
+
+  @media (min-width: 720px) {
+    .other-plan-grid:not(.is-single-plan) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .is-single-plan {
+      max-width: 680px;
+      margin-inline: 0;
+    }
+  }
+
+  @media (min-width: 1080px) {
+    .price-summary-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .price-plan__details {
+      display: none;
+    }
+
+    .compare-wrap {
+      display: block;
+      overflow-x: visible;
+    }
+
+    .compare-table {
+      min-width: 0;
+    }
+
+    .compare-table th,
+    .compare-table td {
+      min-width: 0;
+      white-space: normal;
+    }
+
+    .compare-table caption {
+      padding: 0.8rem;
+      text-align: left;
+      color: var(--ink);
+    }
+  }
+</style>
