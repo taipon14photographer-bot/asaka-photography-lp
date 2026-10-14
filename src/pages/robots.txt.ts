@@ -1,4 +1,4 @@
-const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? "https://asaka-photography.example.com";
+const siteUrl = import.meta.env.SITE;
 
 export const GET = () =>
   new Response(`User-agent: *\nAllow: /\n\nSitemap: ${new URL("/sitemap.xml", siteUrl).toString()}\n`, {

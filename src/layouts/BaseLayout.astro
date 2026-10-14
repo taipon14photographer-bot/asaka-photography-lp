@@ -17,8 +17,7 @@ const {
   image = "/ogp/asaka-photography-og.jpg",
   noindex = false,
 } = Astro.props;
-const configuredSite =
-  import.meta.env.PUBLIC_SITE_URL ?? Astro.site?.toString() ?? "https://asaka-photography.example.com";
+const configuredSite = Astro.site;
 const canonicalUrl = new URL(Astro.url.pathname, configuredSite).toString();
 const ogImageUrl = new URL(image, configuredSite).toString();
 const clarityProjectId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;

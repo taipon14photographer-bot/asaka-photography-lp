@@ -1,4 +1,4 @@
-const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? "https://asaka-photography.example.com";
+const siteUrl = import.meta.env.SITE;
 const pages = ["/", "/about/", "/works/", "/price/", "/flow/", "/faq/"];
 
 const xmlEscape = (value: string) =>
