@@ -22,6 +22,7 @@ const canonicalUrl = new URL(Astro.url.pathname, configuredSite).toString();
 const ogImageUrl = new URL(image, configuredSite).toString();
 const clarityProjectId = import.meta.env.PUBLIC_CLARITY_PROJECT_ID;
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? "G-KCDDX4Y6VP";
+const gaHostname = new URL(canonicalUrl).hostname;
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 ---
 
@@ -65,18 +66,22 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
       )
     }
     {
-      gaMeasurementId && (
-        <>
-          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
-          <script is:inline define:vars={{ gaMeasurementId }}>
+      import.meta.env.PROD && gaMeasurementId && (
+        <script is:inline define:vars={{ gaMeasurementId, gaHostname }}>
+          // Production HTML can also be served by a local preview server.
+          if (window.location.hostname === gaHostname) {
             window.dataLayer = window.dataLayer || [];
             window.gtag = window.gtag || function () {
               window.dataLayer.push(arguments);
             };
             window.gtag("js", new Date());
             window.gtag("config", gaMeasurementId);
-          </script>
-        </>
+            const gaScript = document.createElement("script");
+            gaScript.async = true;
+            gaScript.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(gaMeasurementId);
+            document.head.appendChild(gaScript);
+          }
+        </script>
       )
     }
     <script is:inline>
