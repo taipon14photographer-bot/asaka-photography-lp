@@ -412,6 +412,7 @@ export const otherPlanCategories = [
   {
     key: "family",
     title: "Family",
+    subtitle: "家族写真・お宮参り・七五三・バースデー",
     description: "特別な日だけでなく、何気ない日にも残したい幸せがあります。",
     plans: [
       {
@@ -420,7 +421,7 @@ export const otherPlanCategories = [
         price: "30,000円",
         duration: "約1.5時間",
         delivery: "50枚以上納品",
-        details: ["家族写真・お宮参り・七五三・誕生日などの記念撮影"],
+        details: [],
         notes: [],
       },
     ],

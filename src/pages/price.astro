@@ -85,6 +85,7 @@ import { additionalCosts, options, otherPlanCategories, siteLinks, weddingCompar
       otherPlanCategories.map((category) => (
         <section class="other-category pricing-section" id={category.key} aria-labelledby={`${category.title}-price-title`}>
           <h3 id={`${category.title}-price-title`}>{category.title}</h3>
+          {"subtitle" in category && <p class="category-subtitle">{category.subtitle}</p>}
           <p>{category.description}</p>
           <div class:list={["other-plan-grid", category.plans.length === 1 && "is-single-plan"]}>
             {category.plans.map((plan) => (
@@ -98,9 +99,9 @@ import { additionalCosts, options, otherPlanCategories, siteLinks, weddingCompar
                   <div><dt>撮影時間</dt><dd>{plan.duration}</dd></div>
                   <div><dt>納品枚数</dt><dd>{plan.delivery}</dd></div>
                 </dl>
-                <ul>
+                {plan.details.length > 0 && <ul>
                   {plan.details.map((detail) => <li>{detail}</li>)}
-                </ul>
+                </ul>}
                 {plan.notes.map((note) => <p class="plan-note">{note}</p>)}
                 <a class="button button--ghost plan-consult" href={siteLinks.line} target="_blank" rel="noreferrer" aria-label={`${plan.name}についてLINEで相談する`}>LINEで相談する</a>
               </article>
@@ -204,6 +205,13 @@ import { additionalCosts, options, otherPlanCategories, siteLinks, weddingCompar
   .plan-amount {
     font-size: 1.6rem;
     line-height: 1.4;
+  }
+
+  .category-subtitle {
+    margin-bottom: 0.6rem;
+    font-family: var(--sans);
+    font-size: 0.875rem;
+    line-height: 1.8;
   }
 
   .plan-details {
