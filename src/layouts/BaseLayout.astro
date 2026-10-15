@@ -70,11 +70,11 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
           <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
           <script is:inline define:vars={{ gaMeasurementId }}>
             window.dataLayer = window.dataLayer || [];
-            function gtag() {
-              dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-            gtag("config", gaMeasurementId);
+            window.gtag = window.gtag || function () {
+              window.dataLayer.push(arguments);
+            };
+            window.gtag("js", new Date());
+            window.gtag("config", gaMeasurementId);
           </script>
         </>
       )
@@ -97,7 +97,6 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
     <Footer />
     <script>
       const analyticsWindow = window as Window & {
-        clarity?: (eventType: string, eventName: string) => void;
         gtag?: (...args: unknown[]) => void;
       };
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -132,14 +131,46 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
         });
       }
 
+      // Fixed structural identifiers: never infer context from copy or display order.
+      const lineContexts = [
+        [".site-header__line", "header", "general", "not_selected"],
+        ['[aria-labelledby="hero-title"]', "hero", "general", "not_selected"],
+        ['[aria-labelledby="top-voice-title"]', "testimonial", "general", "not_selected"],
+        ['[aria-labelledby="top-social-title"]', "social", "general", "not_selected"],
+        [".cta-section", "page_end", "general", "not_selected"],
+        ['.gallery-section[id="wedding"]', "gallery", "wedding", "not_selected"],
+        ['.gallery-section[id="maternity"]', "gallery", "maternity", "not_selected"],
+        ['.gallery-section[id="newborn"]', "gallery", "newborn", "not_selected"],
+        ['.gallery-section[id="omiyamairi"]', "gallery", "omiyamairi", "not_selected"],
+        ['.gallery-section[id="753"]', "gallery", "shichigosan", "not_selected"],
+        ['.gallery-section[id="family"]', "gallery", "family", "not_selected"],
+        ['[data-line-plan="wedding_casual"]', "plan_card", "wedding", "wedding_casual"],
+        ['[data-line-plan="wedding_essential"]', "plan_card", "wedding", "wedding_essential"],
+        ['[data-line-plan="wedding_signature"]', "plan_card", "wedding", "wedding_signature"],
+        ['[id="maternity-plan"]', "plan_card", "maternity", "maternity"],
+        ['[id="family-plan"]', "plan_card", "family", "family"],
+        ['[id="lifestyle-newborn"]', "plan_card", "newborn", "lifestyle_newborn"],
+        ['[id="art-newborn"]', "plan_card", "newborn", "art_newborn"],
+        ['[id="additional-costs"]', "additional_costs", "general", "not_selected"],
+        ['[aria-labelledby="not-found-title"]', "not_found", "general", "not_selected"],
+      ] as const;
+
       document.querySelectorAll<HTMLAnchorElement>('a[href^="https://lin.ee/"]').forEach((link) => {
+        const context = lineContexts.find(([selector]) => link.closest(selector));
+        if (!context) return;
+        const [, placement, genre, plan] = context;
+
         link.addEventListener("click", () => {
-          analyticsWindow.clarity?.("event", "line_cta_click");
-          analyticsWindow.gtag?.("event", "line_cta_click", {
-            event_category: "cta",
-            event_label: window.location.pathname,
-            link_text: link.textContent?.trim() ?? "LINE",
-          });
+          try {
+            analyticsWindow.gtag?.("event", "line_click", {
+              page_path: window.location.pathname,
+              placement,
+              genre,
+              plan,
+            });
+          } catch {
+            // Analytics must never interrupt the native LINE link behavior.
+          }
         });
       });
     </script>

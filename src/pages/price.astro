@@ -39,7 +39,7 @@ import { additionalCosts, options, otherPlanCategories, siteLinks, weddingCompar
             <dl class="plan-details price-plan__details">
               {weddingComparison.rows.map((row) => <div><dt>{row.label}</dt><dd>{plan[row.key]}</dd></div>)}
             </dl>
-            <a class="button button--ghost plan-consult" href={siteLinks.line} target="_blank" rel="noreferrer" aria-label={`Wedding ${plan.name}についてLINEで相談する`}>LINEで相談する</a>
+            <a class="button button--ghost plan-consult" href={siteLinks.line} target="_blank" rel="noreferrer" data-line-plan={`wedding_${plan.key}`} aria-label={`Wedding ${plan.name}についてLINEで相談する`}>LINEで相談する</a>
           </article>
         ))
       }
