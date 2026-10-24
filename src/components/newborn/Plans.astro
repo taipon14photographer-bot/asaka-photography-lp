@@ -1,0 +1,16 @@
+---
+import { plans } from "../../data/newborn";
+import { additionalCosts, newbornServiceTerms } from "../../data/siteContent";
+import LineLink from "./LineLink.astro";
+interface Props { selected?: string; }
+const { selected } = Astro.props;
+const shown = selected ? plans.filter(p => p.key === selected) : plans;
+---
+<section class="nb-section" id="plans" aria-labelledby="plans-title">
+  <div class="nb-inner"><div class="nb-heading"><p class="eyebrow">Plan &amp; Price</p><h2 id="plans-title">{selected ? "料金と、撮影に含まれること。" : "残したい時間から、選べる3つのプラン。"}</h2><p>表示料金はすべて税込・平日／土日祝共通です。</p><p class="nb-small">{newbornServiceTerms.durationNote}</p></div>
+    <div class:list={["nb-plans", selected && "nb-plans--single"]}>
+      {shown.map(plan => <article class="nb-plan"><p class="nb-small">{plan.label}</p><h3>{plan.name}</h3><p class="nb-plan-price">{plan.price}<span>円（税込）</span></p><dl><div><dt>{newbornServiceTerms.durationLabel}</dt><dd>{plan.duration}</dd></div><div><dt>お渡しする写真</dt><dd>{plan.delivery}</dd></div></dl><p>{plan.detail}</p>{plan.key === "art_newborn" && <p class="nb-small">{newbornServiceTerms.artDeliveryNote}赤ちゃんの状態を優先するため、すべてのポーズの実施をお約束するものではありません。</p>}<LineLink plan={plan.key} placement="plan_card" label="このプランをLINEで相談" />{!selected && <a class="text-link" href={plan.href}>{plan.name === "Newborn Story" ? "Storyの紹介へ" : "作品と撮影内容を見る"} →</a>}</article>)}
+    </div>
+    <aside class="nb-costs" aria-label="追加費用"><h3>出張費・撮影場所での費用について</h3><p>{additionalCosts.travel}</p><p>{additionalCosts.guestPaid.join("・")}は、撮影料金とは別にご負担いただきます。必要な費用は予約前にご案内します。</p><a class="text-link" href="/price/#additional-costs">共通の追加費用・オプションを見る →</a></aside>
+  </div>
+</section>

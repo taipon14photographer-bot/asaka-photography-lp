@@ -1,0 +1,21 @@
+---
+import { siteLinks } from "../../data/siteContent";
+interface Props { plan?: string; placement?: string; label?: string; ghost?: boolean; }
+const { plan = "not_selected", placement = "page_end", label = "LINEで撮影を相談する", ghost = false } = Astro.props;
+---
+<a class:list={["button", "nb-line", ghost && "button--ghost"]} href={siteLinks.line} target="_blank" rel="noreferrer" data-nb-plan={plan} data-nb-placement={placement}>{label}<span aria-hidden="true"> ↗</span></a>
+<script>
+  const analytics = window as Window & { gtag?: (...args: unknown[]) => void };
+  document.querySelectorAll<HTMLAnchorElement>(".nb-line").forEach(link => {
+    link.addEventListener("click", () => {
+      try {
+        analytics.gtag?.("event", "line_click", {
+          page_path: location.pathname,
+          placement: link.dataset.nbPlacement,
+          genre: "newborn",
+          plan: link.dataset.nbPlan,
+        });
+      } catch { /* Keep the native LINE action available if analytics fails. */ }
+    });
+  });
+</script>

@@ -1,0 +1,18 @@
+---
+import NewbornPage from "../components/newborn/NewbornPage.astro";
+import { newbornBuild } from "../data/newbornBuild";
+// Comparison routes exist only in the noindex local review build.
+export function getStaticPaths() {
+  return [
+    { params: { page: undefined }, props: { kind: "overview" as const } },
+    { params: { page: "lifestyle" }, props: { kind: "lifestyle" as const } },
+    { params: { page: "art" }, props: { kind: "art" as const } },
+    { params: { page: "review/lifestyle-a" }, props: { kind: "lifestyle" as const, comparison: "lifestyle-a" as const } },
+    { params: { page: "review/lifestyle-b" }, props: { kind: "lifestyle" as const, comparison: "lifestyle-b" as const } },
+    { params: { page: "review/story-a" }, props: { kind: "overview" as const, comparison: "story-a" as const } },
+    { params: { page: "review/story-b" }, props: { kind: "overview" as const, comparison: "story-b" as const } },
+  ].filter(route => newbornBuild.review || !route.props.comparison);
+}
+const { kind, comparison } = Astro.props;
+---
+<NewbornPage kind={kind} comparison={comparison} />

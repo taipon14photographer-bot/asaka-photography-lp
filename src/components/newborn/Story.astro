@@ -1,0 +1,41 @@
+---
+import Photo from "./Photo.astro";
+import LineLink from "./LineLink.astro";
+import { photos, plans } from "../../data/newborn";
+import { newbornServiceTerms } from "../../data/siteContent";
+interface Props {
+  compact?: boolean;
+  from?: "overview" | "lifestyle" | "art";
+  photoVariant?: "current" | "art-lifestyle";
+}
+const { compact = false, from = "overview", photoVariant = "current" } = Astro.props;
+const story = plans.find(plan => plan.key === "newborn_story")!;
+const copy = {
+  overview: {
+    heading: "作品も、日々のふれあいも。",
+    body: "おくるみや小物を使うArt作品に加え、抱っこやきょうだいとのやりとり、ご自宅で過ごす場面まで。Newborn Storyは、撮影を通して残せる場面の幅を広げるプランです。",
+    note: "家族・兄弟姉妹写真を含みます。",
+  },
+  lifestyle: {
+    heading: "自然なふれあいに、Artの一枚を。",
+    body: "いつもの抱っこやきょうだいとのやりとりに、おくるみ・カゴなどを使った作品を添えて。日常の姿と新生児期ならではの姿を、ひとつの撮影で残せます。",
+    note: "ご家族・きょうだいとの写真も含むプランです。",
+  },
+  art: {
+    heading: "作品に加えて、日々のふれあいも。",
+    body: "Artを中心に残すプランから、抱っこや家族のふれあい、暮らしの場面まで残すプランへ。Newborn Storyは、作品と自然な生活の記録を組み合わせたい方に。",
+    note: "Artにも家族・兄弟写真を含みます。",
+  },
+}[from];
+// Photo B is available only on the explicit local comparison route; main pages keep A.
+const artPhoto = photoVariant === "art-lifestyle" ? photos.wrapped : photos.embrace;
+---
+<section class="nb-section nb-story" id="story" aria-labelledby="story-title">
+  <div class="nb-inner nb-story-layout">
+    <div class="nb-story-pictures"><Photo photo={artPhoto} sizes="(min-width: 960px) 25vw, 55vw" /><div><Photo photo={photos.bath} sizes="(min-width: 960px) 24vw, 42vw" /><p class="nb-small">Art ＋ Lifestyle</p></div></div>
+    <div><p class="eyebrow">{story.name}</p><h2 id="story-title">{copy.heading}</h2><p>{copy.body}</p><p>{copy.note}{newbornServiceTerms.storyLifestyleNote}</p>
+      <p class="nb-story-price">{story.price}<span>円（税込）</span></p><p class="nb-small">{newbornServiceTerms.durationLabel} {story.duration} ／ {story.delivery}</p>
+      {compact ? <a class="text-link" href="/newborn/#story">Newborn Storyを詳しく見る →</a> : <LineLink plan="newborn_story" placement="story" label="StoryについてLINEで相談する" />}
+    </div>
+  </div>
+</section>

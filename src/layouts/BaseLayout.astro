@@ -9,6 +9,9 @@ interface Props {
   description?: string;
   image?: string;
   noindex?: boolean;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
 }
 
 const {
@@ -16,6 +19,9 @@ const {
   description = siteContent.meta.description,
   image = "/ogp/asaka-photography-og.jpg",
   noindex = false,
+  imageAlt = "夕日のすすき野で寄り添う新郎新婦の写真",
+  imageWidth,
+  imageHeight,
 } = Astro.props;
 const configuredSite = Astro.site;
 const canonicalUrl = new URL(Astro.url.pathname, configuredSite).toString();
@@ -42,11 +48,14 @@ const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content="ASAKA Photography" />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:image:alt" content="夕日のすすき野で寄り添う新郎新婦の写真" />
+    <meta property="og:image:alt" content={imageAlt} />
+    {imageWidth && <meta property="og:image:width" content={String(imageWidth)} />}
+    {imageHeight && <meta property="og:image:height" content={String(imageHeight)} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
+    {Astro.props.imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
     {
       clarityProjectId && (
         <script is:inline define:vars={{ clarityProjectId }}>

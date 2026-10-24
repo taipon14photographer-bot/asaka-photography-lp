@@ -1,4 +1,4 @@
-import aboutImage from "../assets/photos/about/asaka-daiki-camera-forest.jpeg";
+import aboutImage from "../assets/photos/about/photographer-camera-forest.jpg";
 import worksWedding from "../assets/photos/works/wedding-lifecycle-start.jpg";
 import worksMaternity from "../assets/photos/works/maternity-before-birth.jpg";
 import worksNewborn from "../assets/photos/works/newborn-family-gaze.jpg";
@@ -49,11 +49,11 @@ export const siteContent = {
   about: {
     image: {
       src: aboutImage,
-      alt: "森の中で笑顔でカメラを構える朝香大樹",
+      alt: "森の中で笑顔でカメラを構えるフォトグラファー",
     },
     title: "撮る前に、人を見る。",
     body: [
-      "はじめまして。ASAKA Photographyの朝香大樹です。撮影では、ポーズを決める前に、お二人やご家族の空気を見ています。",
+      "はじめまして。ASAKA Photographyです。撮影では、ポーズを決める前に、お二人やご家族の空気を見ています。",
       "どんなふうに笑うのか。どんな距離感で話すのか。緊張すると、手や肩にどんな力が入るのか。お子さんが誰のそばにいると安心するのか。",
       "写真に残したいのは、上手に写った姿だけではありません。その人たちの関係性や、撮影している時間の安心感まで、あとから思い出せるように残したいと思っています。",
       "だから、無理に作り込まず、必要なところだけ少し整えます。写真が苦手な方や、小さなお子さんがいる撮影でも、その場のペースを見ながら進めます。",
@@ -63,8 +63,8 @@ export const siteContent = {
       "写真が苦手でも、最初から上手に写ろうとしなくて大丈夫です。お二人やご家族のペースを見ながら、必要なところはこちらで声をかけて整えていきます。",
     profile: {
       title: "Profile",
-      name: "朝香大樹",
-      role: "ASAKA Photography / Photographer",
+      name: "ASAKA Photography",
+      role: "Photographer",
       body: [
         "静岡・伊豆を中心に、山梨・神奈川エリアもご相談いただきながら、Wedding・Maternity・Newborn・お宮参り・七五三・Familyの出張撮影をしています。",
         "急性期病院で看護師として働きながら、二児の父として、子どものペースや家族の空気感を大切にしています。",
@@ -392,6 +392,13 @@ export const weddingComparison = {
   ],
 };
 
+export const newbornServiceTerms = {
+  durationLabel: "所要時間",
+  durationNote: "表示時間は訪問全体の所要時間です。撮影準備・片付け、授乳やおむつ交換、休憩などの時間も含まれます。",
+  artDeliveryNote: "編集済みの完成写真をお渡しします。",
+  storyLifestyleNote: "授乳や沐浴など、ご家族の日常のひとコマも、ご希望に応じて追加料金なしで撮影できます。赤ちゃんとご家族のペースを大切にしながら、所要時間内で無理なく進めます。なお、当日の様子によって撮影できる場面は異なります。",
+};
+
 export const otherPlanCategories = [
   {
     key: "maternity",
@@ -434,6 +441,7 @@ export const otherPlanCategories = [
       {
         key: "lifestyle-newborn",
         name: "Lifestyle Newborn",
+        summary: "抱っこやふれあいなど、ご家族の自然な姿を中心に。",
         price: "30,000円",
         duration: "約2時間",
         delivery: "50枚以上納品",
@@ -443,11 +451,22 @@ export const otherPlanCategories = [
       {
         key: "art-newborn",
         name: "Art Newborn",
+        summary: "おくるみや小物を使い、新生児期の姿を作品として。",
         price: "50,000円",
-        duration: "約3時間以上",
-        delivery: "30枚以上納品",
+        duration: "約3時間",
+        delivery: "30カット以上納品",
         details: ["ご自宅への出張撮影", "おくるみ・カゴ・クッション・パーツカット", "家族写真・兄弟写真"],
         notes: ["赤ちゃんの状態を優先します。すべてのポージングの実施を保証するものではありません。"],
+      },
+      {
+        key: "newborn-story",
+        name: "Newborn Story",
+        summary: "Art作品に加え、抱っこや日常の場面まで幅広く。",
+        price: "60,000円",
+        duration: "約3〜4時間",
+        delivery: "100枚以上納品",
+        details: ["Art作品と、自然な家族のふれあい・暮らしの場面", "家族・兄弟姉妹写真を含む"],
+        notes: [newbornServiceTerms.storyLifestyleNote],
       },
     ],
   },

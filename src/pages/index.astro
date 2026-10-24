@@ -2,6 +2,7 @@
 import { getImage, Image } from "astro:assets";
 import mobileHero from "../assets/photos/hero/susuki-sunset-mobile.jpg";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { newbornBuild } from "../data/newbornBuild";
 import { siteContent, siteLinks } from "../data/siteContent";
 
 const { hero, works, about, voice, finalCta, social } = siteContent;
@@ -51,7 +52,7 @@ const mobileHeroWebp = await getImage({
     <div class="page-card-grid works-digest">
       {
         works.preview.map((item) => (
-          <a class="page-card works-digest__item" href={`/works/#${item.slug}`} data-animate="image-reveal">
+          <a class="page-card works-digest__item" href={newbornBuild.enabled && item.slug === "newborn" ? "/newborn/" : `/works/#${item.slug}`} data-animate="image-reveal">
             <Image src={item.image} alt={item.alt} width={640} height={640} loading="lazy" decoding="async" style={`object-position: ${item.focus};`} />
             <div class="page-card__body">
               <p class="section-kicker">{item.label}</p>

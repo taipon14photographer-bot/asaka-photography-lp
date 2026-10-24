@@ -1,0 +1,5 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "NEWBORN_LOCAL_PREVIEW=0 NEWBORN_RELEASE_CANDIDATE=1 NEWBORN_OGP_VARIANT=A npm run build",
+  "outputDirectory": "dist-newborn-release-candidate"
+}

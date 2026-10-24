@@ -1,5 +1,6 @@
+import { newbornBuild, newbornPublicPaths } from "../data/newbornBuild";
 const siteUrl = import.meta.env.SITE;
-const pages = ["/", "/about/", "/works/", "/price/", "/flow/", "/faq/"];
+const pages = ["/", "/about/", "/works/", "/price/", "/flow/", "/faq/", ...(newbornBuild.releaseCandidate ? newbornPublicPaths : [])];
 
 const xmlEscape = (value: string) =>
   value.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;");

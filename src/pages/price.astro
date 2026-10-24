@@ -1,9 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { additionalCosts, options, otherPlanCategories, siteLinks, weddingComparison } from "../data/siteContent";
+import LineLink from "../components/newborn/LineLink.astro";
+import { additionalCosts, options, otherPlanCategories, siteLinks, weddingComparison, newbornServiceTerms } from "../data/siteContent";
+import { newbornBuild } from "../data/newbornBuild";
+const newbornPages: Record<string, string> = { "lifestyle-newborn": "/newborn/lifestyle/", "art-newborn": "/newborn/art/", "newborn-story": "/newborn/#story" };
 ---
 
-<BaseLayout title="Price | ASAKA Photography" description="静岡・伊豆を中心としたASAKA Photographyの出張撮影料金。前撮り、マタニティフォト、ニューボーンフォト、家族写真のプランを確認できます。">
+<BaseLayout noindex={newbornBuild.review} title="Price | ASAKA Photography" description="静岡・伊豆を中心としたASAKA Photographyの出張撮影料金。前撮り、マタニティフォト、ニューボーンフォト、家族写真のプランを確認できます。">
   <section class="page-hero" aria-labelledby="price-title">
     <div class="page-hero__copy">
       <p class="eyebrow">Price</p>
@@ -78,7 +81,7 @@ import { additionalCosts, options, otherPlanCategories, siteLinks, weddingCompar
       <h2 id="other-price-title" class="balanced-heading mobile-line-break">
         <span>撮影ジャンルごとに、</span><span>プランを選べます。</span>
       </h2>
-      <p class="lead">Maternity・Familyは単一プラン、Newbornは撮影内容の異なる2つのプランをご案内しています。</p>
+      <p class="lead">Maternity・Familyは単一プラン、Newbornは撮影内容の異なる3つのプランをご案内しています。</p>
     </div>
 
     {
@@ -87,23 +90,27 @@ import { additionalCosts, options, otherPlanCategories, siteLinks, weddingCompar
           <h3 id={`${category.title}-price-title`}>{category.title}</h3>
           {"subtitle" in category && <p class="category-subtitle">{category.subtitle}</p>}
           <p>{category.description}</p>
-          <div class:list={["other-plan-grid", category.plans.length === 1 && "is-single-plan"]}>
+          {category.key === "newborn" && <p class="plan-note">{newbornServiceTerms.durationNote}</p>}
+          <div class:list={["other-plan-grid", category.plans.length === 1 && "is-single-plan", category.plans.length === 3 && "has-three-plans"]}>
             {category.plans.map((plan) => (
               <article class="other-plan" id={plan.key} aria-label={`${plan.name}の料金`}>
                 {category.plans.length > 1 && <h4>{plan.name}</h4>}
+                {category.key === "newborn" && "summary" in plan && <p class="newborn-plan-focus">{plan.summary}</p>}
                 <div class="price-pair">
                   <strong class="plan-amount">{plan.price}</strong>
                   <span>税込・曜日共通</span>
                 </div>
                 <dl class="plan-details">
-                  <div><dt>撮影時間</dt><dd>{plan.duration}</dd></div>
+                  <div><dt>{category.key === "newborn" ? newbornServiceTerms.durationLabel : "撮影時間"}</dt><dd>{plan.duration}</dd></div>
                   <div><dt>納品枚数</dt><dd>{plan.delivery}</dd></div>
                 </dl>
+                {plan.key === "art-newborn" && <p class="plan-note">{newbornServiceTerms.artDeliveryNote}</p>}
                 {plan.details.length > 0 && <ul>
                   {plan.details.map((detail) => <li>{detail}</li>)}
                 </ul>}
                 {plan.notes.map((note) => <p class="plan-note">{note}</p>)}
-                <a class="button button--ghost plan-consult" href={siteLinks.line} target="_blank" rel="noreferrer" aria-label={`${plan.name}についてLINEで相談する`}>LINEで相談する</a>
+                {plan.key === "newborn-story" ? <LineLink plan="newborn_story" placement="plan_card" label="LINEで相談する" ghost={true} /> : <a class="button button--ghost plan-consult" href={siteLinks.line} target="_blank" rel="noreferrer" aria-label={`${plan.name}についてLINEで相談する`}>LINEで相談する</a>}
+                {newbornBuild.enabled && category.key === "newborn" && <a class="text-link newborn-detail-link" href={newbornPages[plan.key]}>{plan.key === "newborn-story" ? "Newborn Storyを見る" : "作品と撮影内容を見る"} →</a>}
               </article>
             ))}
           </div>
@@ -247,6 +254,17 @@ import { additionalCosts, options, otherPlanCategories, siteLinks, weddingCompar
     margin-top: 1rem;
   }
 
+  .newborn-detail-link {
+    display: block;
+    width: fit-content;
+    min-height: 44px;
+    margin-top: 0.7rem;
+  }
+
+  #newborn-story :global(.nb-line) {
+    margin-top: 1rem;
+  }
+
   .compare-wrap {
     display: none;
   }
@@ -275,6 +293,10 @@ import { additionalCosts, options, otherPlanCategories, siteLinks, weddingCompar
   }
 
   @media (min-width: 1080px) {
+    .other-plan-grid.has-three-plans {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
     .price-summary-grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
